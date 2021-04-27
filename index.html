@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="./assets/fonts.css" rel="stylesheet"/>
+<link href="./assets/style.css" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hello {
+            width: 100%;
+            height: 800vh;
+        }
+
+
+        .cont {
+
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .absoluteText {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .headText {
+            transform: translate3d(0px, 50%, 0px);
+        }
+
+        .firstText {
+            font-size: 23px;
+            line-height: 104%;
+            color: #FFFFFF;
+            font-weight: 700;
+            transform: translate3d(0px, 400%, 0px);
+            opacity: 0;
+        }
+
+        .secondText {
+            font-size: 23px;
+            line-height: 104%;
+            color: #FFFFFF;
+            font-weight: 700;
+            transform: translate3d(0px, 400%, 0px);
+            opacity: 0;
+        }
+
+        .thirdText {
+            font-size: 23px;
+            line-height: 104%;
+            color: #FFFFFF;
+            font-weight: 700;
+            transform: translate3d(0px, 400%, 0px);
+            opacity: 0;
+        }
+
+        .headText-category {
+            font-size: 14px;
+            line-height: 26px;
+            font-weight: 700;
+            color: #EC2544;
+            margin-bottom: 8px;
+        }
+
+        .headText-name {
+            font-size: 30px;
+            line-height: 104%;
+            font-weight: 700;
+            color: #201D1D;
+            margin-bottom: 8px;
+        }
+
+        .headText-lrm {
+            font-size: 14px;
+            line-height: 14px;
+            color: #EC2544;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="hello">
+        <div class="cont" style="background: #eee;">
+            <div class="headText absoluteText">
+                <div class="headText-category">ACCESSORIES</div>
+                <div class="headText-name">Tripod</div>
+                <div class="headText-lrm">Learn more ></div>
+            </div>
+
+            <div class="firstText absoluteText">
+                Take your shots to a new level
+            </div>
+
+            <div class="secondText absoluteText">
+                No BS, no unnecessary fanciness, and no weird tech.
+            </div>
+
+            <div class="thirdText absoluteText">
+                Just extend the legs, attach your camera or Pivo Pod and create awesome stuff
+            </div>
+            <canvas
+                id="compareSlider-canvas"
+                class="sample-canvas"
+                width="1920"
+                height="1080"
+            >
+            Your browser does not support the canvas element.
+            </canvas>
+        </div>
+    </div>
+    
+
+	<script>
+		const canvas = document.querySelector('.sample-canvas');
+		const context = canvas.getContext('2d');
+		const videoImages = [];
+        const imageUrl = [
+            "./assets/img/tripod_backg.jpg",
+            "./assets/img/tripod_png.png",
+            "./assets/img/tripod02.png",
+            "./assets/img/tripod03.png",
+            "./assets/img/greenBack.jpg"
+        ];
+		let progress;
+		let currentFrame;
+
+        let fullHeight = 0;
+
+        const ratio = {
+            desktop: {
+                width: 2880,
+                height: 1446,
+                WHRatio: 0
+            },
+            mobile: {
+                width: 828,
+                height: 1422,
+                WHRatio: 0
+            }
+        }
+
+        Object.keys(ratio).forEach(cur => {
+            ratio[cur].WHRatio = ratio[cur].height / ratio[cur].width;
+        });
+
+        var currentDevice = "mobile";
+        let canvasWidth = 0, canvasHeight = 0;
+
+        let animationValues = {
+            contA: {
+                objs: {
+                    headText: document.querySelector(".headText"),
+                    firstText: document.querySelector(".firstText"),
+                    secondText: document.querySelector(".secondText"),
+                    thirdText: document.querySelector(".thirdText"),
+
+                },
+                values: {
+                    // [start, end]
+                    threshold: [0, 1430],
+                    // circleScale: [0, 5, { start: 0, end: 0.3 }],
+                    // headText_TranslateY: [50, -100, { start: 0, end: 0.18 }],
+                    // firstText_TranslateY: [400, -200, { start: 0.24, end: 0.45 }],
+                    // firstText_Opacity: [0, 1, { start: 0.24, end: 0.4 }],
+                    // blendedCanvas01: [0, 1, { start: 0.5, end: 0.75 }],
+                    // blendedCanvas02: [0, 1, { start: 0.8, end: 1 }]
+
+                    circleScale: [0, 5, { start: 0, end: 0.18 }],
+                    headText_TranslateY: [50, -100, { start: 0, end: 0.108 }],
+                    firstText_TranslateY: [400, -200, { start: 0.144, end: 0.27 }],
+                    firstText_Opacity: [0, 1, { start: 0.144, end: 0.24 }],
+                    blendedCanvas01: [0, 1, { start: 0.33, end: 0.66 }],
+                    blendedCanvas02: [0, 1, { start: 0.66, end: 1 }],
+
+                    secondText_TranslateY: [400, -200, { start: 0.64, end: 0.66 }],
+                    secondText_Opacity: [0, 1, { start: 0.64, end: 0.66 }],
+
+                    thirdText_TranslateY: [400, -200, { start: 0.98, end: 1 }],
+                    thirdText_Opacity: [0, 1, { start: 0.98, end: 1 }],
+
+                }
+
+            },
+        }
+
+        function calcValues(values, currentYOffset, currentScrollHeight) {
+            let rv;
+            // 현재 씬(스크롤섹션)에서 스크롤된 범위를 비율로 구하기
+            // const scrollHeight = targetCont.threshold[1] - targetCont.threshold[0];
+            const scrollHeight = currentScrollHeight;
+            const scrollRatio = currentYOffset / scrollHeight;
+
+            if (values.length === 3) {
+                // start ~ end 사이에 애니메이션 실행
+                const partScrollStart = values[2].start * scrollHeight;
+                const partScrollEnd = values[2].end * scrollHeight;
+                const partScrollHeight = partScrollEnd - partScrollStart;
+
+                if (currentYOffset >= partScrollStart && currentYOffset <= partScrollEnd) {
+                    rv = (currentYOffset - partScrollStart) / partScrollHeight * (values[1] - values[0]) + values[0];
+                } else if (currentYOffset < partScrollStart) {
+                    rv = values[0];
+                } else if (currentYOffset > partScrollEnd) {
+                    rv = values[1];
+                }
+            } else {
+                rv = scrollRatio * (values[1] - values[0]) + values[0];
+            }
+
+            return rv;
+        }
+
+		function setImages() {
+			for (let i = 0; i < imageUrl.length; i++) {
+				let imgElem = new Image();
+				imgElem.src = imageUrl[i];
+				videoImages.push(imgElem);
+			}
+		}
+
+		function init() {
+
+            var curFullWidth = document.body.clientWidth;
+
+            // if (curFullWidth > 750) {
+            //     currentDevice = "desktop";
+            // } else {
+            //     currentDevice = "mobile";
+            // }
+
+            canvas.width = curFullWidth;
+            canvas.height = curFullWidth * ratio[currentDevice].WHRatio;
+
+            canvasWidth = canvas.width;
+            canvasHeight = canvas.height;
+
+            
+            context.drawImage(videoImages[0], 0, 0, canvasWidth, canvasHeight);
+            context.drawImage(videoImages[1], 0, 0, canvasWidth, canvasHeight);
+            
+
+            window.addEventListener("scroll", function(e) {
+                
+
+                fullHeight = document.querySelector(".hello").offsetHeight - window.innerHeight;
+
+                animationValues.contA.values.threshold[1] = fullHeight;
+
+                playAnimation()
+                 
+                // if (fullHeight) {
+                //     var curPos = window.pageYOffset / fullHeight;
+
+                //     context.drawImage(videoImages[0], 0, 0, videoImages[0].width, videoImages[0].height * (1 - curPos), 0, 0, canvasWidth, canvasHeight * (1 - curPos));
+                //     context.drawImage(videoImages[1], 0, 0, videoImages[1].width, videoImages[1].height * (1 - curPos), 0, 0, canvasWidth, canvasHeight * (1 - curPos));
+
+
+                //     context.drawImage(videoImages[2], 0, videoImages[2].height * (1 - curPos), videoImages[2].width, videoImages[2].height * curPos, 0, canvasHeight * (1 - curPos), canvasWidth, canvasHeight * curPos);
+                // }
+            });
+		}
+
+        var firstCurpos = 0;
+        var secondCurpos = 0;
+
+        function playAnimation() {
+            const objs = animationValues.contA;
+            const values = objs.values;
+            const scrollRatio = window.pageYOffset / fullHeight;
+
+            var circleValues = values.circleScale;
+            var headTextValues = values.headText_TranslateY;
+            var firstTextValues = values.firstText_TranslateY;
+            var firstTextOpacity = values.firstText_Opacity;
+
+            var secondTextValues = values.secondText_TranslateY;
+            var secondTextOpacity = values.secondText_Opacity;
+
+            var thirdTextValues = values.thirdText_TranslateY;
+            var thirdTextOpacity = values.thirdText_Opacity;
+
+            var blendedCanvas01 = values.blendedCanvas01;
+            var blendedCanvas02 = values.blendedCanvas02;
+
+            var curYOffset = window.pageYOffset;
+
+            if (scrollRatio <= 0.27) {
+                // console.log('hello?', calcValues(circleValues, curYOffset, fullHeight), calcValues(headTextValues, curYOffset, fullHeight));
+
+                // change circle Values
+
+                // change translate of head text
+
+
+                objs.objs.headText.style.transform = `translate3d(0, ${calcValues(headTextValues, curYOffset, fullHeight)}%, 0)`;
+                objs.objs.firstText.style.opacity = calcValues(firstTextOpacity, curYOffset, fullHeight)
+                objs.objs.firstText.style.transform = `translate3d(0, ${calcValues(firstTextValues, curYOffset, fullHeight)}%, 0)`;
+
+
+                var curPos = window.pageYOffset / fullHeight;
+
+                context.save();
+                context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+
+                // context.drawImage(videoImages[0], 0, 0, videoImages[0].width, videoImages[0].height * (1 - curPos), 0, 0, canvasWidth, canvasHeight * (1 - curPos));
+                // context.drawImage(videoImages[1], 0, 0, videoImages[1].width, videoImages[1].height * (1 - curPos), 0, 0, canvasWidth, canvasHeight * (1 - curPos));
+
+                context.drawImage(videoImages[0], 0, 0, videoImages[0].width, videoImages[0].height, 0, 0, canvasWidth, canvasHeight);
+                
+
+                context.beginPath();
+                context.arc(canvasWidth / 2, canvasHeight / 2, 100 * calcValues(circleValues, curYOffset, fullHeight), 0, 2 * Math.PI);
+                context.fillStyle = "#28AABE";
+                context.fill()
+
+                context.drawImage(videoImages[1], 0, 0, videoImages[1].width, videoImages[1].height, -scrollRatio * 50, -scrollRatio * 50, canvasWidth + scrollRatio * 50, canvasHeight + scrollRatio * 50);
+                // console.log('adsfasdf', scrollRatio);
+
+                //  context.drawImage(videoImages[2], 0, videoImages[2].height * (1 - curPos), videoImages[2].width, videoImages[2].height * curPos, 0, canvasHeight * (1 - curPos), canvasWidth, canvasHeight * curPos);
+
+            
+                
+            } else if (scrollRatio >= 0.33 && scrollRatio <= 0.66) {
+
+                objs.objs.secondText.style.opacity = calcValues(secondTextOpacity, curYOffset, fullHeight)
+                objs.objs.secondText.style.transform = `translate3d(0, ${calcValues(secondTextValues, curYOffset, fullHeight)}%, 0)`;
+
+                firstCurpos = calcValues(blendedCanvas01, curYOffset, fullHeight);
+
+                context.save();
+                context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+                context.fillStyle = "#28AABE";
+                context.fillRect(0, 0, canvasWidth, canvasHeight);
+
+                context.drawImage(videoImages[1], 0, 0, videoImages[1].width, videoImages[1].height * (1 - firstCurpos), -(0.66 - scrollRatio) * 50, -(0.66 - scrollRatio) * 50, canvasWidth + (0.66 - scrollRatio) * 50, canvasHeight * (1 - firstCurpos) + (0.66 - scrollRatio) * 50);
+                
+                context.fillStyle = `rgba(0, 0, 0, ${firstCurpos})`;
+                context.fillRect(0, 0, canvasWidth, canvasHeight);
+            
+                context.drawImage(videoImages[4], 0, videoImages[2].height * (1 - firstCurpos), videoImages[2].width, videoImages[2].height * firstCurpos, 0, canvasHeight * (1 - firstCurpos), canvasWidth, canvasHeight * firstCurpos);
+                context.drawImage(videoImages[2], 0, videoImages[2].height * (1 - firstCurpos), videoImages[2].width, videoImages[2].height * firstCurpos, 0, canvasHeight * (1 - firstCurpos), canvasWidth, canvasHeight * firstCurpos);
+
+
+            } else if (scrollRatio >= 0.66) {
+
+                objs.objs.thirdText.style.opacity = calcValues(thirdTextOpacity, curYOffset, fullHeight)
+                objs.objs.thirdText.style.transform = `translate3d(0, ${calcValues(thirdTextValues, curYOffset, fullHeight)}%, 0)`;
+
+
+                secondCurpos = calcValues(blendedCanvas02, curYOffset, fullHeight);
+
+                context.save();
+                context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+                context.fillStyle = "#28AABE";
+                context.fillRect(0, 0, canvasWidth, canvasHeight);
+
+                context.drawImage(videoImages[2], 0, 0, videoImages[2].width, videoImages[2].height * (1 - secondCurpos), 0, 0, canvasWidth, canvasHeight * (1 - secondCurpos));
+                
+                context.fillStyle = `rgba(0, 0, 0, ${secondCurpos})`;
+                context.fillRect(0, 0, canvasWidth, canvasHeight);
+            
+                context.drawImage(videoImages[4], 0, videoImages[2].height * (1 - secondCurpos), videoImages[2].width, videoImages[2].height * secondCurpos, 0, canvasHeight * (1 - secondCurpos), canvasWidth, canvasHeight * secondCurpos);
+                context.drawImage(videoImages[3], 0, videoImages[3].height * (1 - secondCurpos), videoImages[3].width, videoImages[3].height * secondCurpos, 0, canvasHeight * (1 - secondCurpos), canvasWidth, canvasHeight * secondCurpos);
+
+            }
+
+            // console.log('adfadf', scrollRatio);
+        }
+
+		window.addEventListener('load', init);
+		setImages();
+	</script>
+
+</body>
+</html>
