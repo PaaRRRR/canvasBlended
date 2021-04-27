@@ -12,7 +12,7 @@
 
         .hello {
             width: 100%;
-            height: 800vh;
+            height: 1000vh;
         }
 
 
@@ -49,7 +49,7 @@
             line-height: 104%;
             color: #FFFFFF;
             font-weight: 700;
-            transform: translate3d(0px, 400%, 0px);
+            transform: translate3d(0px, 100%, 0px);
             opacity: 0;
         }
 
@@ -60,6 +60,9 @@
             font-weight: 700;
             transform: translate3d(0px, 400%, 0px);
             opacity: 0;
+            width: 130px;
+            text-align: right;
+            top: 50%;
         }
 
         .headText-category {
@@ -177,15 +180,17 @@
                     circleScale: [0, 5, { start: 0, end: 0.18 }],
                     headText_TranslateY: [50, -100, { start: 0, end: 0.108 }],
                     firstText_TranslateY: [400, -200, { start: 0.144, end: 0.27 }],
-                    firstText_Opacity: [0, 1, { start: 0.144, end: 0.24 }],
+                    firstText_Opacity_in: [0, 1, { start: 0.144, end: 0.24 }],
                     blendedCanvas01: [0, 1, { start: 0.33, end: 0.66 }],
                     blendedCanvas02: [0, 1, { start: 0.66, end: 1 }],
 
-                    secondText_TranslateY: [400, -200, { start: 0.64, end: 0.66 }],
-                    secondText_Opacity: [0, 1, { start: 0.64, end: 0.66 }],
+                    secondText_TranslateY: [180, 140, { start: 0.62, end: 0.66 }],
+                    secondText_Opacity_in: [0, 1, { start: 0.62, end: 0.64 }],
+                    secondText_Opacity_out: [1, 0, { start: 0.64, end: 0.66 }],
 
-                    thirdText_TranslateY: [400, -200, { start: 0.98, end: 1 }],
-                    thirdText_Opacity: [0, 1, { start: 0.98, end: 1 }],
+                    thirdText_TranslateY: [35, 20, { start: 0.96, end: 1 }],
+                    thirdText_Opacity_in: [0, 1, { start: 0.96, end: 0.98 }],
+                    thirdText_Opacity_out: [1, 0, { start: 0.98, end: 1 }],
 
                 }
 
@@ -280,13 +285,15 @@
             var circleValues = values.circleScale;
             var headTextValues = values.headText_TranslateY;
             var firstTextValues = values.firstText_TranslateY;
-            var firstTextOpacity = values.firstText_Opacity;
+            var firstTextOpacity_in = values.firstText_Opacity_in;
 
             var secondTextValues = values.secondText_TranslateY;
-            var secondTextOpacity = values.secondText_Opacity;
+            var secondTextOpacity_in = values.secondText_Opacity_in;
+            var secondTextOpacity_out = values.secondText_Opacity_out;
 
             var thirdTextValues = values.thirdText_TranslateY;
-            var thirdTextOpacity = values.thirdText_Opacity;
+            var thirdTextOpacity_in = values.thirdText_Opacity_in;
+            var thirdTextOpacity_out = values.thirdText_Opacity_out;
 
             var blendedCanvas01 = values.blendedCanvas01;
             var blendedCanvas02 = values.blendedCanvas02;
@@ -302,7 +309,7 @@
 
 
                 objs.objs.headText.style.transform = `translate3d(0, ${calcValues(headTextValues, curYOffset, fullHeight)}%, 0)`;
-                objs.objs.firstText.style.opacity = calcValues(firstTextOpacity, curYOffset, fullHeight)
+                objs.objs.firstText.style.opacity = calcValues(firstTextOpacity_in, curYOffset, fullHeight)
                 objs.objs.firstText.style.transform = `translate3d(0, ${calcValues(firstTextValues, curYOffset, fullHeight)}%, 0)`;
 
 
@@ -332,8 +339,17 @@
                 
             } else if (scrollRatio >= 0.33 && scrollRatio <= 0.66) {
 
-                // objs.objs.secondText.style.opacity = calcValues(secondTextOpacity, curYOffset, fullHeight)
-                // objs.objs.secondText.style.transform = `translate3d(0, ${calcValues(secondTextValues, curYOffset, fullHeight)}%, 0)`;
+                
+
+                if (scrollRatio <= 0.64) {
+                    objs.objs.secondText.style.opacity = calcValues(secondTextOpacity_in, curYOffset, fullHeight);
+                } else {
+                    objs.objs.secondText.style.opacity = calcValues(secondTextOpacity_out, curYOffset, fullHeight);
+                }
+
+                objs.objs.thirdText.style.opacity = 0;
+
+                objs.objs.secondText.style.transform = `translate3d(0, ${calcValues(secondTextValues, curYOffset, fullHeight)}%, 0)`;
 
                 firstCurpos = calcValues(blendedCanvas01, curYOffset, fullHeight);
 
@@ -353,9 +369,14 @@
 
 
             } else if (scrollRatio >= 0.66) {
+                if (scrollRatio < 0.98) {
+                    objs.objs.thirdText.style.opacity = calcValues(thirdTextOpacity_in, curYOffset, fullHeight);
+                } else {
+                    objs.objs.thirdText.style.opacity = calcValues(thirdTextOpacity_out, curYOffset, fullHeight);
+                }
+                objs.objs.secondText.style.opacity = 0;
 
-                // objs.objs.thirdText.style.opacity = calcValues(thirdTextOpacity, curYOffset, fullHeight)
-                // objs.objs.thirdText.style.transform = `translate3d(0, ${calcValues(thirdTextValues, curYOffset, fullHeight)}%, 0)`;
+                objs.objs.thirdText.style.transform = `translate3d(${calcValues(thirdTextValues, curYOffset, fullHeight)}%, -50%, 0)`;
 
 
                 secondCurpos = calcValues(blendedCanvas02, curYOffset, fullHeight);
