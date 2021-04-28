@@ -9,7 +9,6 @@
     body {
         margin: 0;
         padding: 0;
-        height: 1500vh;
     }
 div.sticky {
   position: -webkit-sticky;
@@ -18,18 +17,16 @@ div.sticky {
   font-size: 20px;
   background-color: white;
   width: 100%;
+
+  left: 0;
+  transform: none;
 }
 
 
 .imageBox {
     width: fit-content;
-    position: absolute;
-    top: 0;
     text-align: center;
-    left: 50%;
-    transform: translateX(-50%);
     overflow: hidden;
-
 }
 
 img {
@@ -69,14 +66,6 @@ img {
     clip-path: circle(var(--scale));
     will-change: transform;
 }
-
-.sticky.cont {
-    width: fit-content;
-    height: fit-content;
-    margin: auto;
-    overflow: hidden;
-}
-
 
 .absoluteText {
     position: absolute;
@@ -188,6 +177,9 @@ img {
 
     --scale: 0;
 
+    --productImage01Trans: 0;
+    --productImage02Scale: 1;
+
 
     --firstTextTrans: 0;
     --firstTextOpacity: 0;
@@ -216,6 +208,26 @@ img {
 
 .imageBox4 .overlay {
     opacity: var(--imageBox3Opacity);
+}
+
+.imageBox2 .moveImg {
+    /* transform: translate3d(var(), var(), 0); */
+
+    transform: translate3d(var(--productImage01Trans), var(--productImage01Trans), 0);
+    will-change: transform;
+}
+
+.imageBox3 .moveImg {
+    /* transform: translate3d(var(), var(), 0); */
+
+    transform: scale(var(--productImage02Scale));
+    will-change: transform;
+}
+
+.imageBox4 .moveImg {
+    /* transform: translate3d(var(), var(), 0); */
+
+    transform: scale();
 }
 
 @media (min-width: 750px) {
@@ -247,9 +259,9 @@ img {
 <p>Scroll down this page to see how  sticky positioning works.</p>
 
 
-<div class="sticky cont" style="width: 100%; height: 100vh;">
+<div class="cont" style="width: 100%; height: 600vh;">
 
-    <div class="imageBox imageBox2" style="z-index: 2;">
+    <div class="imageBox sticky imageBox2" style="z-index: 2;">
         <img data-mobile="./assets/img/tripod_backg.jpg" data-desktop="./assets/img/tripod_backg-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
         <div class="headText absoluteText">
             <div class="headText-category">ACCESSORIES</div>
@@ -266,7 +278,7 @@ img {
         <div class="overlay"></div>
     </div>
 
-    <div class="imageBox imageBox3" style="z-index: 3;">
+    <div class="imageBox sticky imageBox3" style="z-index: 3;">
         <img data-mobile="./assets/img/greenBack.jpg" data-desktop="./assets/img/greenBack-desktop.jpg"  style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
         <img class="moveImg" data-mobile="./assets/img/tripod02.png" data-desktop="./assets/img/tripod02-desktop.png" />
 
@@ -276,7 +288,7 @@ img {
         <div class="overlay"></div>
     </div>
 
-    <div class="imageBox imageBox4" style="z-index: 4;">
+    <div class="imageBox sticky imageBox4" style="z-index: 4;">
         <img data-mobile="./assets/img/greenBack.jpg" data-desktop="./assets/img/greenBack-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)" />
         <img class="moveImg" data-mobile="./assets/img/tripod03.png" data-desktop="./assets/img/tripod03-desktop.png" />
 
@@ -285,6 +297,11 @@ img {
         </div>
         <div class="overlay"></div>
     </div>
+</div>
+
+
+<div style="background-color: wheat; width: 100%; height: 100vh; position: relative; z-index: 5;">
+    Hello world!!!!!!!
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
@@ -349,6 +366,10 @@ img {
             imageBoxOpacity01: "--imageBox1Opacity",
             imageBoxOpacity02: "--imageBox2Opacity",
             imageBoxOpacity03: "--imageBox3Opacity",
+
+            productImageTrans01: "--productImage01Trans",
+            productImageScale02: "--productImage02Scale",
+            
             circleScale: "--scale",
             textTrans01: "--firstTextTrans",
             textOpacity01: "--firstTextOpacity",
@@ -364,7 +385,10 @@ img {
             textOpacity01_in: [0, 1, { start: 0.15, end: 0.27 }, "textOpacity01"],
             textOpacity01_out: [1, 0, { start: 0.27, end: 0.33 }, "textOpacity01"],
 
+            productImageTrans01: [0, -5, { start: 0, end: 0.33 }, "productImageTrans01"],
+
             chargingLayerY02: [100, 0, { start: 0.33, end: 0.66 }, "chargingLayerY02"],
+            productImageScale02: [1, 0.9, { start: 0.33, end: 0.66 }, "productImageScale02"],
             imageBoxOpacity01: [0, 1, { start: 0.33, end: 0.66 }, "imageBoxOpacity01"],
             textTrans02: [200, 170, { start: 0.62, end: 0.64 }, "textTrans02"],
             textOpacity02_in: [0, 1, { start: 0.62, end: 0.64 }, "textOpacity02"],
@@ -450,6 +474,8 @@ img {
 
                 taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
 
+                taretEl.style.setProperty(contKeys.productImageTrans01, calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight) + "%");
+
                 taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "%");
 
                 taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
@@ -469,6 +495,8 @@ img {
                 taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
 
                 taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
+
+                taretEl.style.setProperty(contKeys.productImageScale02, calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight));
 
                 taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "%");
 
@@ -505,7 +533,13 @@ img {
                 imageBox4.style.opacity = "1";
             }
 
-        }
+        } 
+        
+        // else if (yOffset > endPoint) {
+
+        //     var a = "it's over!" + window.pageYOffset + " : " + endPoint
+        //     alert(a);
+        // }
 
     }
 
