@@ -58,13 +58,15 @@ img {
 
 .circle {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
     background-color: #28AABE;
-    border-radius: 100%;
-    transform: translate(-50%, -50%) scale(var(--scale));
+
+    -webkit-clip-path: circle(var(--scale));
+    clip-path: circle(var(--scale));
     will-change: transform;
 }
 
@@ -357,7 +359,7 @@ img {
         },
         values: {
             // [start point, end point, { animation range }, keyValue]
-            circleScale: [0, 3, { start: 0, end: 0.17 }, "circleScale"],
+            circleScale: [0, 100, { start: 0, end: 0.17 }, "circleScale"],
             textTrans01: [200, 170, { start: 0.15, end: 0.27 }, "textTrans01"],
             textOpacity01_in: [0, 1, { start: 0.15, end: 0.27 }, "textOpacity01"],
             textOpacity01_out: [1, 0, { start: 0.27, end: 0.33 }, "textOpacity01"],
@@ -446,7 +448,7 @@ img {
 
             if (scrollRatio <= 0.33) {
 
-                taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
 
                 taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "%");
 
