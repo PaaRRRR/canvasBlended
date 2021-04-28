@@ -9,7 +9,7 @@
     body {
         margin: 0;
         padding: 0;
-        height: 900vh;
+        height: 1500vh;
     }
 div.sticky {
   position: -webkit-sticky;
@@ -216,23 +216,24 @@ img {
     opacity: var(--imageBox3Opacity);
 }
 
+@media (min-width: 750px) {
 
-.imageBox2 .moveImage {
-    /* transform: translate3d(var(), var(), 0); */
+    .firstText, .secondText, .thirdText {
+        font-size: 38px;
+        line-height: 135%;
+    }
 
-    transform: scale(var());
-}
 
-.imageBox3 .moveImage {
-    /* transform: translate3d(var(), var(), 0); */
+    .secondText {
+        width: 50%;
+        left: 41%;
+        top: 18%;
+    }
 
-    transform: scale(var());
-}
-
-.imageBox4 .moveImage {
-    /* transform: translate3d(var(), var(), 0); */
-
-    transform: scale(var());
+    .thirdText {
+        width: 50%;
+        left: 30%;
+    }
 }
 
 
@@ -247,7 +248,7 @@ img {
 <div class="sticky cont" style="width: 100%; height: 100vh;">
 
     <div class="imageBox imageBox2" style="z-index: 2;">
-        <img src="./assets/img/tripod_backg.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
+        <img data-mobile="./assets/img/tripod_backg.jpg" data-desktop="./assets/img/tripod_backg-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
         <div class="headText absoluteText">
             <div class="headText-category">ACCESSORIES</div>
             <div class="headText-name">Tripod</div>
@@ -255,9 +256,7 @@ img {
         </div>
         
         <div class="circle"></div>
-        <img class="moveImg" src="./assets/img/tripod01.png" />
-
-       
+        <img class="moveImg" data-mobile="./assets/img/tripod01.png" data-desktop="./assets/img/tripod01-desktop.png" />
 
         <div class="firstText absoluteText">
             Take your shots to a new level
@@ -266,8 +265,8 @@ img {
     </div>
 
     <div class="imageBox imageBox3" style="z-index: 3;">
-        <img src="./assets/img/greenBack.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
-        <img class="moveImg" src="./assets/img/tripod02.png" />
+        <img data-mobile="./assets/img/greenBack.jpg" data-desktop="./assets/img/greenBack-desktop.jpg"  style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
+        <img class="moveImg" data-mobile="./assets/img/tripod02.png" data-desktop="./assets/img/tripod02-desktop.png" />
 
         <div class="secondText absoluteText">
             No BS, no unnecessary fanciness, and no weird tech.
@@ -276,8 +275,8 @@ img {
     </div>
 
     <div class="imageBox imageBox4" style="z-index: 4;">
-        <img src="./assets/img/greenBack.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)" />
-        <img class="moveImg" src="./assets/img/tripod03.png" />
+        <img data-mobile="./assets/img/greenBack.jpg" data-desktop="./assets/img/greenBack-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)" />
+        <img class="moveImg" data-mobile="./assets/img/tripod03.png" data-desktop="./assets/img/tripod03-desktop.png" />
 
         <div class="thirdText absoluteText">
             Just extend the legs, attach your camera or Pivo Pod and create awesome stuff
@@ -371,7 +370,7 @@ img {
 
             chargingLayerY03: [100, 0, { start: 0.66, end: 1 }, "chargingLayerY03"],
             imageBoxOpacity02: [0, 1, { start: 0.66, end: 1 }, "imageBoxOpacity02"],
-            textTrans03: [80, 50, { start: 0.8, end: 0.9 }, "textTrans03"],
+            textTrans03: [50, 20, { start: 0.8, end: 0.9 }, "textTrans03"],
             textOpacity03_in: [0, 1, { start: 0.8, end: 0.9 }, "textOpacity03"],
             textOpacity03_out: [1, 0, { start: 0.9, end: 1 }, "textOpacity03"],
 
@@ -511,6 +510,7 @@ img {
     window.addEventListener("load", function init() {
 
         checkDevice();
+        lazyLoad();
         animationValues.objs.cont.start = animationValues.objs.cont.targetEl.offsetTop;
     })
 
@@ -525,6 +525,16 @@ img {
         } else {
             screen.type = "mobile";
         }
+    }
+
+    function lazyLoad() {
+        var imgs = document.getElementsByTagName('img');
+        imgs = Array.prototype.slice.call(imgs);
+
+        imgs.forEach(cur => {
+            cur.src = cur.dataset[screen.type];
+        })
+
     }
 
     window.addEventListener("resize", checkDevice);
