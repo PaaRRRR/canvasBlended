@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="./assets/fonts.css" rel="stylesheet"/>
+<link href="./assets/style.css" rel="stylesheet"/>
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        height: 900vh;
+    }
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky !important;
+  top: 0;
+  font-size: 20px;
+  background-color: white;
+  width: 100%;
+}
+
+
+.imageBox {
+    width: fit-content;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+
+}
+
+img {
+    height: 100vh;
+    width: auto;
+    vertical-align: bottom;
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.relative {
+    position: relative;
+}
+
+.textBox {
+    opacity: var(--opacity);
+    transform: translateY(var(--y));
+    top: 50px;
+    will-change: opacity, transform;
+}
+
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    background-color: #28AABE;
+    border-radius: 100%;
+    transform: translate(-50%, -50%) scale(var(--scale));
+    will-change: transform;
+}
+
+.sticky.cont {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    overflow: hidden;
+}
+
+
+.absoluteText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.headText {
+    transform: translate3d(0px, 50%, 0px);
+}
+
+.firstText {
+    font-size: 23px;
+    line-height: 104%;
+    color: #FFFFFF;
+    font-weight: 700;
+    transform: translate3d(0px, var(--firstTextTrans), 0px);
+    opacity: var(--firstTextOpacity);
+}
+
+.secondText {
+    font-size: 23px;
+    line-height: 104%;
+    color: #FFFFFF;
+    font-weight: 700;
+    transform: translate3d(0px, var(--secondTextTrans), 0px);
+    opacity: var(--secondTextOpacity);
+}
+
+.thirdText {
+    font-size: 23px;
+    line-height: 104%;
+    color: #FFFFFF;
+    font-weight: 700;
+    transform: translate3d(var(--thirdTextTrans), -50%, 0px);
+    width: 130px;
+    text-align: right;
+    top: 50%;
+    opacity: var(--thirdTextOpacity);
+}
+
+
+.headText-category {
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 700;
+    color: #EC2544;
+    margin-bottom: 8px;
+}
+
+.headText-name {
+    font-size: 30px;
+    line-height: 104%;
+    font-weight: 700;
+    color: #201D1D;
+    margin-bottom: 8px;
+}
+
+.headText-lrm {
+    font-size: 14px;
+    line-height: 14px;
+    color: #EC2544;
+}
+
+
+
+
+
+
+.imageBox2 {
+    -webkit-clip-path: inset(var(--charging-1st-layer-y) 0 0 0);
+    clip-path: inset(var(--charging-1st-layer-y) 0 0 0);
+
+    /* opacity: var(--imageBox1Opacity); */
+}
+
+.imageBox3 {
+    -webkit-clip-path: inset(var(--charging-2nd-layer-y) 0 0 0);
+    clip-path: inset(var(--charging-2nd-layer-y) 0 0 0);
+
+    opacity: 0;
+    /* opacity: var(--imageBox2Opacity); */
+}
+
+.imageBox4 {
+    -webkit-clip-path: inset(var(--charging-3rd-layer-y) 0 0 0);
+    clip-path: inset(var(--charging-3rd-layer-y) 0 0 0);
+    
+
+
+    opacity: 0;
+    /* opacity: var(--imageBox3Opacity); */
+}
+
+
+.cont {
+    --charging-1st-layer-y: "100%";
+
+    --charging-2nd-layer-y: "100%";
+
+    --charging-3rd-layer-y: "100%";
+
+    --imageBox1Opacity: 0;
+    --imageBox2Opacity: 0;
+    --imageBox3Opacity: 0;
+
+
+    --scale: 0;
+
+
+    --firstTextTrans: 0;
+    --firstTextOpacity: 0;
+    --secondTextTrans: 0;
+    --secondTextOpacity: 0;
+    --thirdTextTrans: 0;
+    --thirdTextOpacity: 0;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+}
+
+.imageBox2 .overlay {
+    opacity: var(--imageBox1Opacity);
+}
+
+.imageBox3 .overlay {
+    opacity: var(--imageBox2Opacity);
+}
+
+.imageBox4 .overlay {
+    opacity: var(--imageBox3Opacity);
+}
+
+
+.imageBox2 .moveImage {
+    /* transform: translate3d(var(), var(), 0); */
+
+    transform: scale(var());
+}
+
+.imageBox3 .moveImage {
+    /* transform: translate3d(var(), var(), 0); */
+
+    transform: scale(var());
+}
+
+.imageBox4 .moveImage {
+    /* transform: translate3d(var(), var(), 0); */
+
+    transform: scale(var());
+}
+
+
+</style>
+</head>
+<body>
+
+<h2>Sticky Element: Scroll Down to See the Effect</h2>
+<p>Scroll down this page to see how  sticky positioning works.</p>
+
+
+<div class="sticky cont" style="width: 100%; height: 100vh;">
+
+    <div class="imageBox imageBox2" style="z-index: 2;">
+        <img src="./assets/img/tripod_backg.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
+        <div class="headText absoluteText">
+            <div class="headText-category">ACCESSORIES</div>
+            <div class="headText-name">Tripod</div>
+            <div class="headText-lrm">Learn more ></div>
+        </div>
+        
+        <div class="circle"></div>
+        <img class="moveImg" src="./assets/img/tripod_png.png" />
+
+       
+
+        <div class="firstText absoluteText">
+            Take your shots to a new level
+        </div>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="imageBox imageBox3" style="z-index: 3;">
+        <img src="./assets/img/greenBack.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
+        <img class="moveImg" src="./assets/img/Tripod02.png" />
+
+        <div class="secondText absoluteText">
+            No BS, no unnecessary fanciness, and no weird tech.
+        </div>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="imageBox imageBox4" style="z-index: 4;">
+        <img src="./assets/img/greenBack.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)" />
+        <img class="moveImg" src="./assets/img/tripod03.png" />
+
+        <div class="thirdText absoluteText">
+            Just extend the legs, attach your camera or Pivo Pod and create awesome stuff
+        </div>
+        <div class="overlay"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+<script>
+    var imageBox2 = document.querySelector(".imageBox2");
+    var imageBox3 = document.querySelector(".imageBox3");
+    var imageBox4 = document.querySelector(".imageBox4");
+
+    var cont = document.querySelector(".cont");
+
+    function getValue(rangeArr, percentage) {
+        // rangeArr: [startPoint, endPoint];
+        // percentage: 0 ~ 1
+
+        return rangeArr[0] + (rangeArr[1] - rangeArr[0]) * percentage;
+    }
+
+    function getPercentage(curPos, length) {
+        return parseFloat((curPos / length).toFixed(3));
+    }
+
+    function calcValues(values, currentYOffset, scrollHeight) {
+		let rv;
+		// 현재 씬(스크롤섹션)에서 스크롤된 범위를 비율로 구하기
+		const scrollRatio = currentYOffset / scrollHeight;
+
+		if (values.length === 4) {
+			// start ~ end 사이에 애니메이션 실행
+			const partScrollStart = values[2].start * scrollHeight;
+			const partScrollEnd = values[2].end * scrollHeight;
+			const partScrollHeight = partScrollEnd - partScrollStart;
+
+			if (currentYOffset >= partScrollStart && currentYOffset <= partScrollEnd) {
+				rv = (currentYOffset - partScrollStart) / partScrollHeight * (values[1] - values[0]) + values[0];
+			} else if (currentYOffset < partScrollStart) {
+				rv = values[0];
+			} else if (currentYOffset > partScrollEnd) {
+				rv = values[1];
+			}
+		} else {
+			rv = scrollRatio * (values[1] - values[0]) + values[0];
+		}
+
+		return rv;
+	}
+
+    let animationValues = {
+        objs: {
+            cont: {
+                targetEl: document.querySelector(".cont"),
+                height: 0,
+                totalHeight: 0,
+                start: 0,
+                end: 0
+            } 
+        },
+        keys: {
+            chargingLayerY01: "--charging-1st-layer-y",
+            chargingLayerY02: "--charging-2nd-layer-y",
+            chargingLayerY03: "--charging-3rd-layer-y",
+            imageBoxOpacity01: "--imageBox1Opacity",
+            imageBoxOpacity02: "--imageBox2Opacity",
+            imageBoxOpacity03: "--imageBox3Opacity",
+            circleScale: "--scale",
+            textTrans01: "--firstTextTrans",
+            textOpacity01: "--firstTextOpacity",
+            textTrans02: "--secondTextTrans",
+            textOpacity02: "--secondTextOpacity",
+            textTrans03: "--thirdTextTrans",
+            textOpacity03: "--thirdTextOpacity"
+        },
+        values: {
+            // [start point, end point, { animation range }, keyValue]
+            circleScale: [0, 3, { start: 0, end: 0.17 }, "circleScale"],
+            textTrans01: [100, 0, { start: 0.17, end: 0.27 }, "textTrans01"],
+            textOpacity01_in: [0, 1, { start: 0.17, end: 0.27 }, "textOpacity01"],
+            textOpacity01_out: [1, 0, { start: 0.27, end: 0.33 }, "textOpacity01"],
+
+            chargingLayerY02: [100, 0, { start: 0.33, end: 0.66 }, "chargingLayerY02"],
+            imageBoxOpacity01: [0, 1, { start: 0.33, end: 0.66 }, "imageBoxOpacity01"],
+            textTrans02: [100, 0, { start: 0.47, end: 0.57 }, "textTrans02"],
+            textOpacity02_in: [0, 1, { start: 0.47, end: 0.57 }, "textOpacity02"],
+            textOpacity02_out: [1, 0, { start: 0.57, end: 0.66 }, "textOpacity02"],
+
+            chargingLayerY03: [100, 0, { start: 0.66, end: 1 }, "chargingLayerY03"],
+            imageBoxOpacity02: [0, 1, { start: 0.66, end: 1 }, "imageBoxOpacity02"],
+            textTrans03: [80, 50, { start: 0.8, end: 0.9 }, "textTrans03"],
+            textOpacity03_in: [0, 1, { start: 0.8, end: 0.9 }, "textOpacity03"],
+            textOpacity03_out: [1, 0, { start: 0.9, end: 1 }, "textOpacity03"],
+
+            chargingLayerY01: [0, 0, { start: 0, end: 0 }, "chargingLayerY01"],
+            imageBoxOpacity03: [0, 1, { start: 0, end: 0 }, "imageBoxOpacity03"],
+
+        }
+    }
+
+    let scrollCount = 0;
+
+    var throttledEvent = _.throttle(function() {
+        playAnimation();
+    }, 16);
+
+    window.addEventListener("scroll", function(e) {
+
+        if (scrollCount < 10) {
+            let targetCont = animationValues.objs.cont;
+
+            targetCont.totalHeight = window.innerHeight * 5;
+            targetCont.height = targetCont.targetEl.offsetHeight;
+
+            targetCont.end = targetCont.start + targetCont.totalHeight;
+
+            scrollCount += 1;
+        }
+
+
+        // do animation;
+        throttledEvent();
+
+        // playAnimation();
+    });
+
+    
+
+
+    function playAnimation() {
+        console.log('adfasdf');
+
+
+        if (scrollCount < 10) {
+            let targetCont = animationValues.objs.cont;
+
+            targetCont.totalHeight = window.innerHeight * 5;
+            targetCont.height = targetCont.targetEl.offsetHeight;
+
+            targetCont.end = targetCont.start + targetCont.totalHeight;
+
+            scrollCount += 1;
+        }
+
+
+
+        const contObj = animationValues.objs;
+        const taretEl = contObj.cont.targetEl;
+        const contValues = animationValues.values;
+        const contKeys = animationValues.keys;
+
+        const scrollHeight = contObj.cont.totalHeight;
+        const startPoint = contObj.cont.start;
+        const endPoint = contObj.cont.end;
+
+        let yOffset = window.pageYOffset;
+        const currentYOffset = yOffset - startPoint;
+        const scrollRatio = currentYOffset / scrollHeight;
+
+        if (yOffset >= startPoint && yOffset <= endPoint) {
+            // do animation
+
+            // calcValues(contValues.chargingLayerY01, currentYOffset, scrollRatio);
+
+            if (scrollRatio <= 0.33) {
+
+                taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight));
+
+                taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "%");
+
+                if (scrollRatio < 0.27) {
+                    taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
+                } else {
+                    taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_out"], currentYOffset, scrollHeight));
+                }
+
+                imageBox2.style.opacity = "1";
+                imageBox3.style.opacity = "0";
+                imageBox4.style.opacity = "0";
+
+            } else if (scrollRatio <= 0.66) {
+
+                taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
+
+                taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
+
+                taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "%");
+
+                if (scrollRatio < 0.57) {
+                    taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
+                } else {
+                    taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_out"], currentYOffset, scrollHeight));
+                }
+
+                imageBox2.style.opacity = "1";
+                imageBox3.style.opacity = "1";
+                imageBox4.style.opacity = "0";
+
+            } else {
+
+                taretEl.style.setProperty(contKeys.imageBoxOpacity02, calcValues(contValues["imageBoxOpacity02"], currentYOffset, scrollHeight));
+
+                taretEl.style.setProperty(contKeys.chargingLayerY03, calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight) + "%");
+
+                taretEl.style.setProperty(contKeys.textTrans03, calcValues(contValues["textTrans03"], currentYOffset, scrollHeight) + "%");
+
+                if (scrollRatio < 0.9) {
+                    taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
+                } else {
+                    taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_out"], currentYOffset, scrollHeight));
+                }
+
+
+
+                imageBox2.style.opacity = "0";
+                imageBox3.style.opacity = "1";
+                imageBox4.style.opacity = "1";
+            }
+
+        }
+
+    }
+
+    window.addEventListener("load", function init() {
+        animationValues.objs.cont.start = animationValues.objs.cont.targetEl.offsetTop;
+    })
+
+    // window.addEventListener("scroll", function(e) {
+    //     // console.log('hello?', window.pageYOffset, cont1.offsetTop, cont2.offsetTop, cont3.offsetTop);
+    //     var scrollPos = window.pageYOffset;
+        
+
+    //     if (scrollPos > 102) {
+    //         if (scrollPos < 945) {
+    //             // 102 ~ 945
+
+    //             const percentage = getPercentage(scrollPos - 102, 843);
+    //             const halfPercentage = getPercentage(scrollPos - 502, 843);
+
+    //             const lastPercentage = getPercentage(scrollPos - 700, 843);
+
+    //             cont.style.setProperty('--scale', getValue([0, 3], percentage));
+                
+
+    //             cont.style.setProperty('--firstTextTrans', getValue([100, 0], lastPercentage) + "%");
+
+    //             if (scrollPos < 800) {
+    //                 cont.style.setProperty('--firstTextOpacity', getValue([0, 1], lastPercentage));
+    //             } else {
+    //                 cont.style.setProperty('--firstTextOpacity', getValue([1, 0], lastPercentage));
+    //             }
+                
+
+    //             // console.log('hello, first', scrollPos, getValue([100, 0], percentage) + "%", getValue([1, 0], halfPercentage));
+
+    //             imageBox2.style.opacity = "1";
+    //             imageBox3.style.opacity = "0";
+    //             imageBox4.style.opacity = "0";
+
+    //         } else if (scrollPos < 1788) {
+    //             // 945 ~ 1788
+    //             const percentage = getPercentage(scrollPos - 945, 843);
+    //             const halfPercentage = getPercentage(scrollPos - 1345, 843);
+
+    //             const lastPercentage = getPercentage(scrollPos - 1500, 843);
+
+    //             cont.style.setProperty('--imageBox1Opacity', getValue([0, 1], halfPercentage));
+    //             cont.style.setProperty('--charging-2nd-layer-y', getValue([100, 0], percentage) + "%");
+
+
+    //             cont.style.setProperty('--secondTextTrans', getValue([100, 0], lastPercentage) + "%");
+
+    //             if (scrollPos < 1600) {
+    //                 cont.style.setProperty('--secondTextOpacity', getValue([0, 1], lastPercentage));
+    //             } else {
+    //                 cont.style.setProperty('--secondTextOpacity', getValue([1, 0], lastPercentage));
+    //             }
+
+
+    //             // console.log('hello, first', scrollPos, getValue([100, 0], percentage) + "%", getValue([1, 0], halfPercentage));
+
+    //             imageBox2.style.opacity = "1";
+    //             imageBox3.style.opacity = "1";
+    //             imageBox4.style.opacity = "0";
+
+    //         } else if (scrollPos < 2631) {
+    //             // 1788 ~ 2631
+    //             const percentage = getPercentage(scrollPos - 1788, 843);
+    //             const halfPercentage = getPercentage(scrollPos - 2200, 843);
+
+    //             const lastPercentage = getPercentage(scrollPos - 2400, 843);
+
+
+    //             cont.style.setProperty('--imageBox2Opacity', getValue([0, 1], percentage));
+    //             cont.style.setProperty('--charging-3rd-layer-y', getValue([100, 0], percentage) + "%");
+
+                
+    //             cont.style.setProperty('--thirdTextTrans', getValue([100, 0], lastPercentage) + "%");
+
+    //             if (scrollPos < 2500) {
+    //                 cont.style.setProperty('--thirdTextOpacity', getValue([0, 1], lastPercentage));
+    //                 // console.log('????', getValue([0, 1], lastPercentage));
+    //             } else {
+    //                 cont.style.setProperty('--thirdTextOpacity', getValue([1, 0], lastPercentage));
+
+    //                 // console.log('????', getValue([1, 0], lastPercentage));
+    //             }
+
+
+    //             // console.log('hello, seec', scrollPos, getValue([100, 0], percentage) + "%", getValue([1, 0], percentage));
+
+    //             imageBox2.style.opacity = "0";
+    //             imageBox3.style.opacity = "1";
+    //             imageBox4.style.opacity = "1";
+    //         }
+
+    //         console.log('helo', scrollPos);
+    //     }
+        
+    // });
+
+
+</script>
+
+</body>
+</html>
