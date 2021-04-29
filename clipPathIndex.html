@@ -6,10 +6,11 @@
 <link href="./assets/style.css" rel="stylesheet"/>
 <style>
 
-    body {
-        margin: 0;
-        padding: 0;
-    }
+body {
+    margin: 0;
+    padding: 0;
+}
+
 div.sticky {
   position: -webkit-sticky;
   position: sticky !important;
@@ -36,21 +37,8 @@ img {
     position: relative;
 }
 
-.absolute {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
 .relative {
     position: relative;
-}
-
-.textBox {
-    opacity: var(--opacity);
-    transform: translateY(var(--y));
-    top: 50px;
-    will-change: opacity, transform;
 }
 
 .circle {
@@ -59,12 +47,6 @@ img {
     height: 100%;
     top: 0;
     left: 0;
-
-    background-color: #28AABE;
-
-    -webkit-clip-path: circle(var(--scale));
-    clip-path: circle(var(--scale));
-    will-change: transform;
 }
 
 .absoluteText {
@@ -84,8 +66,6 @@ img {
     line-height: 104%;
     color: #FFFFFF;
     font-weight: 700;
-    transform: translate3d(0px, var(--firstTextTrans), 0px);
-    opacity: var(--firstTextOpacity);
 }
 
 .secondText {
@@ -93,8 +73,6 @@ img {
     line-height: 104%;
     color: #FFFFFF;
     font-weight: 700;
-    transform: translate3d(0px, var(--secondTextTrans), 0px);
-    opacity: var(--secondTextOpacity);
 }
 
 .thirdText {
@@ -103,11 +81,10 @@ img {
     line-height: 31.05px;
     color: #FFFFFF;
     font-weight: 700;
-    transform: translate3d(var(--thirdTextTrans), -50%, 0px);
+    
     width: 120px;
     text-align: right;
     top: 50%;
-    opacity: var(--thirdTextOpacity);
 }
 
 
@@ -142,27 +119,18 @@ img {
 
 
 .imageBox2 {
-    -webkit-clip-path: inset(var(--charging-1st-layer-y) 0 0 0);
-    clip-path: inset(var(--charging-1st-layer-y) 0 0 0);
+    
 
     /* opacity: var(--imageBox1Opacity); */
 }
 
 .imageBox3 {
-    -webkit-clip-path: inset(var(--charging-2nd-layer-y) 0 0 0);
-    clip-path: inset(var(--charging-2nd-layer-y) 0 0 0);
-
-    opacity: 0;
+    
     /* opacity: var(--imageBox2Opacity); */
 }
 
 .imageBox4 {
-    -webkit-clip-path: inset(var(--charging-3rd-layer-y) 0 0 0);
-    clip-path: inset(var(--charging-3rd-layer-y) 0 0 0);
     
-
-
-    opacity: 0;
     /* opacity: var(--imageBox3Opacity); */
 }
 
@@ -202,37 +170,96 @@ img {
     background-color: #000;
 }
 
-.imageBox2 .overlay {
+
+/*
+*
+* Tripod
+*
+*/
+
+
+.circle-tripod {
+    background-color: #28AABE;
+
+    -webkit-clip-path: circle(var(--scale));
+    clip-path: circle(var(--scale));
+    will-change: transform;
+}
+
+.firstText-tripod {
+    transform: translate3d(0px, var(--firstTextTrans), 0px);
+    opacity: var(--firstTextOpacity);
+}
+
+.secondText-tripod {
+    transform: translate3d(0px, var(--secondTextTrans), 0px);
+    opacity: var(--secondTextOpacity);
+}
+
+.thirdText-tripod {
+    transform: translate3d(var(--thirdTextTrans), -50%, 0px);
+    opacity: var(--thirdTextOpacity);
+    
+}
+
+.imageBox-tripod01 {
+    -webkit-clip-path: inset(var(--charging-1st-layer-y) 0 0 0);
+    clip-path: inset(var(--charging-1st-layer-y) 0 0 0);
+
+}
+
+.imageBox-tripod02 {
+    -webkit-clip-path: inset(var(--charging-2nd-layer-y) 0 0 0);
+    clip-path: inset(var(--charging-2nd-layer-y) 0 0 0);
+
+    opacity: 0;
+}
+
+.imageBox-tripod03 {
+    -webkit-clip-path: inset(var(--charging-3rd-layer-y) 0 0 0);
+    clip-path: inset(var(--charging-3rd-layer-y) 0 0 0);
+    
+    opacity: 0;
+}
+
+.imageBox-tripod01 .overlay {
     opacity: var(--imageBox1Opacity);
 }
 
-.imageBox3 .overlay {
+.imageBox-tripod02 .overlay {
     opacity: var(--imageBox2Opacity);
 }
 
-.imageBox4 .overlay {
+.imageBox-tripod03 .overlay {
     opacity: var(--imageBox3Opacity);
 }
 
-.imageBox2 .moveImg {
+.imageBox-tripod01 .moveImg {
     /* transform: translate3d(var(), var(), 0); */
 
     transform: translate3d(var(--productImage01Trans), var(--productImage01Trans), 0);
     will-change: transform;
 }
 
-.imageBox3 .moveImg {
+.imageBox-tripod02 .moveImg {
     /* transform: translate3d(var(), var(), 0); */
 
     transform: scale(var(--productImage02Scale));
     will-change: transform;
 }
 
-.imageBox4 .moveImg {
+.imageBox-tripod03 .moveImg {
     /* transform: translate3d(var(), var(), 0); */
 
     transform: scale();
 }
+
+/*
+*
+* end of Tripod
+*
+*/
+
 
 @media (min-width: 750px) {
 
@@ -242,13 +269,13 @@ img {
     }
 
 
-    .secondText {
+    .secondText-tripod {
         width: 50%;
         left: 41%;
         top: 18%;
     }
 
-    .thirdText {
+    .thirdText-tripod {
         width: 50%;
         left: 30%;
     }
@@ -265,7 +292,7 @@ img {
 
 <div class="cont" style="width: 100%; height: 400vh;">
 
-    <div class="imageBox sticky imageBox2" style="z-index: 2;">
+    <div class="imageBox sticky imageBox-tripod01 imageBox2" style="z-index: 2;">
         <img data-mobile="./assets/img/tripod_backg.jpg" data-desktop="./assets/img/tripod_backg-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
         <div class="headText absoluteText">
             <div class="headText-category">ACCESSORIES</div>
@@ -273,30 +300,30 @@ img {
             <div class="headText-lrm">Learn more ></div>
         </div>
         
-        <div class="circle"></div>
+        <div class="circle circle-tripod"></div>
         <img class="moveImg" data-mobile="./assets/img/tripod01.png" data-desktop="./assets/img/tripod01-desktop.png" />
 
-        <div class="firstText absoluteText">
+        <div class="firstText absoluteText firstText-tripod">
             Take your shots to a new level
         </div>
         <div class="overlay"></div>
     </div>
 
-    <div class="imageBox sticky imageBox3" style="z-index: 3;">
+    <div class="imageBox sticky imageBox-tripod02 imageBox3" style="z-index: 3;">
         <img data-mobile="./assets/img/greenBack.jpg" data-desktop="./assets/img/greenBack-desktop.jpg"  style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
         <img class="moveImg" data-mobile="./assets/img/tripod02.png" data-desktop="./assets/img/tripod02-desktop.png" />
 
-        <div class="secondText absoluteText">
+        <div class="secondText absoluteText secondText-tripod">
             No BS, no unnecessary fanciness, and no weird tech.
         </div>
         <div class="overlay"></div>
     </div>
 
-    <div class="imageBox sticky imageBox4" style="z-index: 4;">
+    <div class="imageBox sticky imageBox-tripod03 imageBox4" style="z-index: 4;">
         <img data-mobile="./assets/img/greenBack.jpg" data-desktop="./assets/img/greenBack-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)" />
         <img class="moveImg" data-mobile="./assets/img/tripod03.png" data-desktop="./assets/img/tripod03-desktop.png" />
 
-        <div class="thirdText absoluteText">
+        <div class="thirdText absoluteText thirdText-tripod">
             Just extend the legs, attach your camera or Pivo Pod and create awesome stuff
         </div>
         <div class="overlay"></div>
@@ -311,9 +338,9 @@ img {
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 
 <script>
-    var imageBox2 = document.querySelector(".imageBox2");
-    var imageBox3 = document.querySelector(".imageBox3");
-    var imageBox4 = document.querySelector(".imageBox4");
+    var imageBoxTripod01 = document.querySelector(".imageBox-tripod01");
+    var imageBoxTripod02 = document.querySelector(".imageBox-tripod02");
+    var imageBoxTripod03 = document.querySelector(".imageBox-tripod03");
 
     var cont = document.querySelector(".cont");
 
@@ -479,9 +506,9 @@ img {
                 //     taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_out"], currentYOffset, scrollHeight));
                 // }
 
-                imageBox2.style.opacity = "1";
-                imageBox3.style.opacity = "0";
-                imageBox4.style.opacity = "0";
+                imageBoxTripod01.style.opacity = "1";
+                imageBoxTripod02.style.opacity = "0";
+                imageBoxTripod03.style.opacity = "0";
 
             } else if (scrollRatio <= 0.66) {
 
@@ -501,9 +528,9 @@ img {
                 //     taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_out"], currentYOffset, scrollHeight));
                 // }
 
-                imageBox2.style.opacity = "1";
-                imageBox3.style.opacity = "1";
-                imageBox4.style.opacity = "0";
+                imageBoxTripod01.style.opacity = "1";
+                imageBoxTripod02.style.opacity = "1";
+                imageBoxTripod03.style.opacity = "0";
 
             } else {
 
@@ -521,9 +548,9 @@ img {
                 //     taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_out"], currentYOffset, scrollHeight));
                 // }
 
-                imageBox2.style.opacity = "0";
-                imageBox3.style.opacity = "1";
-                imageBox4.style.opacity = "1";
+                imageBoxTripod01.style.opacity = "0";
+                imageBoxTripod02.style.opacity = "1";
+                imageBoxTripod03.style.opacity = "1";
             }
 
         } 
