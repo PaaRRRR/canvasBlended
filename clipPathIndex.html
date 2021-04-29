@@ -16,7 +16,6 @@ div.sticky {
   position: sticky !important;
   top: 0;
   font-size: 20px;
-  background-color: white;
   width: 100%;
 
   left: 0;
@@ -238,6 +237,9 @@ img {
     -webkit-clip-path: inset(var(--charging-1st-layer-y) 0 0 0);
     clip-path: inset(var(--charging-1st-layer-y) 0 0 0);
 
+    /* background-image: url('./assets/img/tripod_backg-desktop-new.jpg');
+    background-size: contain; */
+
 }
 
 .imageBox-tripod02 {
@@ -245,6 +247,7 @@ img {
     clip-path: inset(var(--charging-2nd-layer-y) 0 0 0);
 
     opacity: 0;
+    background-color: #28AABE;
 }
 
 .imageBox-tripod03 {
@@ -252,6 +255,7 @@ img {
     clip-path: inset(var(--charging-3rd-layer-y) 0 0 0);
     
     opacity: 0;
+    background-color: #28AABE;
 }
 
 .imageBox-tripod01 .overlay {
@@ -301,7 +305,7 @@ img {
 */
 
 .circle-smartMount {
-    background-color: #28AABE;
+    background-color: #F3C130;
 
     -webkit-clip-path: circle(var(--scale-sm));
     clip-path: circle(var(--scale-sm));
@@ -327,6 +331,7 @@ img {
 .imageBox-smartMount01 {
     -webkit-clip-path: inset(var(--charging-1st-layer-y-sm) 0 0 0);
     clip-path: inset(var(--charging-1st-layer-y-sm) 0 0 0);
+    background-color: #FFF;
 }
 
 .imageBox-smartMount02 {
@@ -334,6 +339,7 @@ img {
     clip-path: inset(var(--charging-2nd-layer-y-sm) 0 0 0);
 
     opacity: 0;
+    background-color: #F3C130;
 }
 
 .imageBox-smartMount03 {
@@ -341,6 +347,7 @@ img {
     clip-path: inset(var(--charging-3rd-layer-y-sm) 0 0 0);
     
     opacity: 0;
+    background-color: #F3C130;
 }
 
 
@@ -357,21 +364,18 @@ img {
 }
 
 .imageBox-smartMount01 .moveImg {
-    /* transform: translate3d(var(), var(), 0); */
 
     transform: translate3d(var(--productImage01Trans-sm), var(--productImage01Trans-sm), 0);
     will-change: transform;
 }
 
 .imageBox-smartMount02 .moveImg {
-    /* transform: translate3d(var(), var(), 0); */
 
     transform: scale(var(--productImage02Scale-sm));
     will-change: transform;
 }
 
 .imageBox-smartMount03 .moveImg {
-    /* transform: translate3d(var(), var(), 0); */
 
     transform: scale();
 }
@@ -414,7 +418,7 @@ img {
 <p>Scroll down this page to see how  sticky positioning works.</p>
 
 
-<div class="cont" style="width: 100%; height: 400vh;">
+<div class="cont" style="width: 100%; height: 700vh;">
 
     <div class="imageBox sticky imageBox-tripod01 imageBox2" style="z-index: 2;">
         <img data-mobile="./assets/img/tripod_backg.jpg" data-desktop="./assets/img/tripod_backg-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
@@ -456,7 +460,7 @@ img {
 
     <!-- smart mount -->
 
-    <!-- <div class="imageBox sticky imageBox-smartMount01 imageBox2" style="z-index: 5;">
+    <div class="imageBox sticky imageBox-smartMount01 imageBox2" style="z-index: 5;">
         <img data-mobile="./assets/img/SM_backg.jpg" data-desktop="./assets/img/SM_backg-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
         <div class="headText absoluteText">
             <div class="headText-category">ACCESSORIES</div>
@@ -491,7 +495,7 @@ img {
             Just extend the legs, attach your camera or Pivo Pod and create awesome stuff
         </div>
         <div class="overlay"></div>
-    </div> -->
+    </div>
 
     <!-- end of smart mount -->
 
@@ -602,53 +606,129 @@ img {
             SM_textOpacity03: "--thirdTextOpacity-sm"
         },
         values: {
+
+            // circleScale: [0, 100, { start: 0, end: 0.17 }, "circleScale"],
+            // textTrans01: [100, 0, { start: 0.13, end: 0.66 }, "textTrans01"],
+            // textOpacity01_in: [0, 1, { start: 0.13, end: 0.27 }, "textOpacity01"],
+            // textOpacity01_out: [1, 0, { start: 0.27, end: 0.33 }, "textOpacity01"],
+
+            // productImageTrans01: [0, -5, { start: 0, end: 0.33 }, "productImageTrans01"],
+
+            // chargingLayerY02: [100, 0, { start: 0.33, end: 0.66 }, "chargingLayerY02"],
+            // productImageScale02: [1, 0.9, { start: 0.33, end: 0.66 }, "productImageScale02"],
+            // imageBoxOpacity01: [0, 1, { start: 0.33, end: 0.66 }, "imageBoxOpacity01"],
+            // textTrans02: [80, -20, { start: 0.62, end: 1 }, "textTrans02"],
+            // textOpacity02_in: [0, 1, { start: 0.60, end: 0.62 }, "textOpacity02"],
+            // textOpacity02_out: [1, 0, { start: 0.57, end: 0.66 }, "textOpacity02"],
+
+            // chargingLayerY03: [100, 0, { start: 0.66, end: 1 }, "chargingLayerY03"],
+            // imageBoxOpacity02: [0, 1, { start: 0.66, end: 1 }, "imageBoxOpacity02"],
+            // textTrans03: [-125, -145, { start: 0.8, end: 0.9 }, "textTrans03"],
+            // textOpacity03_in: [0, 1, { start: 0.8, end: 0.9 }, "textOpacity03"],
+            // textOpacity03_out: [1, 0, { start: 0.9, end: 1 }, "textOpacity03"],
+
+            // chargingLayerY01: [0, 0, { start: 0, end: 0 }, "chargingLayerY01"],
+            // imageBoxOpacity03: [0, 1, { start: 0, end: 0 }, "imageBoxOpacity03"],
+
+
+
             // [start point, end point, { animation range }, keyValue]
-            circleScale: [0, 100, { start: 0, end: 0.17 }, "circleScale"],
-            textTrans01: [100, 0, { start: 0.13, end: 0.66 }, "textTrans01"],
-            textOpacity01_in: [0, 1, { start: 0.13, end: 0.27 }, "textOpacity01"],
-            textOpacity01_out: [1, 0, { start: 0.27, end: 0.33 }, "textOpacity01"],
+            circleScale: [0, 100, { start: 0, end: 0.17 / 2 }, "circleScale"],
+            textTrans01: [100, 0, { start: 0.13 / 2, end: 0.66 / 2 }, "textTrans01"],
+            textOpacity01_in: [0, 1, { start: 0.13 / 2, end: 0.27 / 2 }, "textOpacity01"],
+            textOpacity01_out: [1, 0, { start: 0.27 / 2, end: 0.33 / 2 }, "textOpacity01"],
 
-            productImageTrans01: [0, -5, { start: 0, end: 0.33 }, "productImageTrans01"],
+            productImageTrans01: [0, -5, { start: 0, end: 0.33 / 2 }, "productImageTrans01"],
 
-            chargingLayerY02: [100, 0, { start: 0.33, end: 0.66 }, "chargingLayerY02"],
-            productImageScale02: [1, 0.9, { start: 0.33, end: 0.66 }, "productImageScale02"],
-            imageBoxOpacity01: [0, 1, { start: 0.33, end: 0.66 }, "imageBoxOpacity01"],
-            textTrans02: [80, -20, { start: 0.62, end: 1 }, "textTrans02"],
-            textOpacity02_in: [0, 1, { start: 0.60, end: 0.62 }, "textOpacity02"],
-            textOpacity02_out: [1, 0, { start: 0.57, end: 0.66 }, "textOpacity02"],
+            chargingLayerY02: [100, 0, { start: 0.33 / 2, end: 0.66 / 2 }, "chargingLayerY02"],
+            productImageScale02: [1, 0.9, { start: 0.33 / 2, end: 0.66 / 2 }, "productImageScale02"],
+            imageBoxOpacity01: [0, 1, { start: 0.33 / 2, end: 0.66 / 2 }, "imageBoxOpacity01"],
+            textTrans02: [80, -20, { start: 0.62 / 2, end: 1 / 2 }, "textTrans02"],
+            textOpacity02_in: [0, 1, { start: 0.60 / 2, end: 0.62 / 2 }, "textOpacity02"],
+            textOpacity02_out: [1, 0, { start: 0.57 / 2, end: 0.66 / 2 }, "textOpacity02"],
 
-            chargingLayerY03: [100, 0, { start: 0.66, end: 1 }, "chargingLayerY03"],
-            imageBoxOpacity02: [0, 1, { start: 0.66, end: 1 }, "imageBoxOpacity02"],
-            textTrans03: [-125, -145, { start: 0.8, end: 0.9 }, "textTrans03"],
-            textOpacity03_in: [0, 1, { start: 0.8, end: 0.9 }, "textOpacity03"],
-            textOpacity03_out: [1, 0, { start: 0.9, end: 1 }, "textOpacity03"],
+            chargingLayerY03: [100, 0, { start: 0.66 / 2, end: 1 / 2 }, "chargingLayerY03"],
+            imageBoxOpacity02: [0, 1, { start: 0.66 / 2, end: 1 / 2 }, "imageBoxOpacity02"],
+            textTrans03: [-125, -145, { start: 0.8 / 2, end: 0.9 / 2 }, "textTrans03"],
+            textOpacity03_in: [0, 1, { start: 0.8 / 2, end: 0.9 / 2 }, "textOpacity03"],
+            textOpacity03_out: [1, 0, { start: 0.9 / 2, end: 1 / 2 }, "textOpacity03"],
 
             chargingLayerY01: [0, 0, { start: 0, end: 0 }, "chargingLayerY01"],
-            imageBoxOpacity03: [0, 1, { start: 0, end: 0 }, "imageBoxOpacity03"],
+            imageBoxOpacity03: [0, 1, { start: 0.5, end: 0.5 + 0.33 / 2 }, "imageBoxOpacity03"],
 
             // smart mount
-            SM_circleScale: [0, 100, { start: 0, end: 0.17 }, "SM_circleScale"],
-            SM_textTrans01: [200, 170, { start: 0.15, end: 0.27 }, "SM_textTrans01"],
-            SM_textOpacity01_in: [0, 1, { start: 0.15, end: 0.27 }, "SM_textOpacity01"],
-            SM_textOpacity01_out: [1, 0, { start: 0.27, end: 0.33 }, "SM_textOpacity01"],
+            SM_circleScale: [0, 100, { start: 0.5, end: 0.17 / 2 + 0.5 }, "SM_circleScale"],
+            SM_textTrans01: [200, 170, { start: 0.15 / 2 + 0.5, end: 0.27 / 2 + 0.5 }, "SM_textTrans01"],
+            SM_textOpacity01_in: [0, 1, { start: 0.15 / 2 + 0.5, end: 0.27 / 2 + 0.5 }, "SM_textOpacity01"],
+            SM_textOpacity01_out: [1, 0, { start: 0.27 / 2 + 0.5, end: 0.33 / 2 + 0.5 }, "SM_textOpacity01"],
 
-            SM_productImageTrans01: [0, -5, { start: 0, end: 0.33 }, "SM_productImageTrans01"],
+            SM_productImageTrans01: [0, -5, { start: 0.5, end: 0.33 / 2 + 0.5 }, "SM_productImageTrans01"],
 
-            SM_chargingLayerY02: [100, 0, { start: 0.33, end: 0.66 }, "SM_chargingLayerY02"],
-            SM_productImageScale02: [1, 0.9, { start: 0.33, end: 0.66 }, "SM_productImageScale02"],
-            SM_imageBoxOpacity01: [0, 1, { start: 0.33, end: 0.66 }, "SM_imageBoxOpacity01"],
-            SM_textTrans02: [200, 170, { start: 0.62, end: 0.64 }, "SM_textTrans02"],
-            SM_textOpacity02_in: [0, 1, { start: 0.62, end: 0.64 }, "SM_textOpacity02"],
-            SM_textOpacity02_out: [1, 0, { start: 0.57, end: 0.66 }, "SM_textOpacity02"],
+            SM_chargingLayerY02: [100, 0, { start: 0.33 / 2 + 0.5, end: 0.66 / 2 + 0.5 }, "SM_chargingLayerY02"],
+            SM_productImageScale02: [1, 0.9, { start: 0.33 / 2 + 0.5, end: 0.66 / 2 + 0.5 }, "SM_productImageScale02"],
+            SM_imageBoxOpacity01: [0, 1, { start: 0.33 / 2 + 0.5, end: 0.66 / 2 + 0.5 }, "SM_imageBoxOpacity01"],
+            SM_textTrans02: [200, 170, { start: 0.62 / 2 + 0.5, end: 0.64 / 2 + 0.5 }, "SM_textTrans02"],
+            SM_textOpacity02_in: [0, 1, { start: 0.62 / 2 + 0.5, end: 0.64 / 2 + 0.5 }, "SM_textOpacity02"],
+            SM_textOpacity02_out: [1, 0, { start: 0.57 / 2 + 0.5, end: 0.66 / 2 + 0.5 }, "SM_textOpacity02"],
 
-            SM_chargingLayerY03: [100, 0, { start: 0.66, end: 1 }, "SM_chargingLayerY03"],
-            SM_imageBoxOpacity02: [0, 1, { start: 0.66, end: 1 }, "SM_imageBoxOpacity02"],
-            SM_textTrans03: [50, 20, { start: 0.8, end: 0.9 }, "SM_textTrans03"],
-            SM_textOpacity03_in: [0, 1, { start: 0.8, end: 0.9 }, "SM_textOpacity03"],
-            SM_textOpacity03_out: [1, 0, { start: 0.9, end: 1 }, "SM_textOpacity03"],
+            SM_chargingLayerY03: [100, 0, { start: 0.66 / 2 + 0.5, end: 1 / 2 + 0.5 }, "SM_chargingLayerY03"],
+            SM_imageBoxOpacity02: [0, 1, { start: 0.66 / 2 + 0.5, end: 1 / 2 + 0.5 }, "SM_imageBoxOpacity02"],
+            SM_textTrans03: [50, 20, { start: 0.8 / 2 + 0.5, end: 0.9 / 2 + 0.5 }, "SM_textTrans03"],
+            SM_textOpacity03_in: [0, 1, { start: 0.8 / 2 + 0.5, end: 0.9 / 2 + 0.5 }, "SM_textOpacity03"],
+            SM_textOpacity03_out: [1, 0, { start: 0.9 / 2 + 0.5, end: 1 / 2 + 0.5 }, "SM_textOpacity03"],
 
-            SM_chargingLayerY01: [0, 0, { start: 0, end: 0 }, "SM_chargingLayerY01"],
+            SM_chargingLayerY01: [100, 0, { start: 0.5, end: 0.5 + 0.33 / 2 }, "SM_chargingLayerY01"],
             SM_imageBoxOpacity03: [0, 1, { start: 0, end: 0 }, "SM_imageBoxOpacity03"],
+
+
+
+
+            // circleScale: [0, 100, { start: 0, end: (0.17 / 2) * (6/7) }, "circleScale"],
+            // textTrans01: [100, 0, { start: (0.13 / 2) * (6/7), end: (0.66 / 2) * (6/7) }, "textTrans01"],
+            // textOpacity01_in: [0, 1, { start: (0.13 / 2) * (6/7), end: (0.27 / 2) * (6/7) }, "textOpacity01"],
+            // textOpacity01_out: [1, 0, { start: (0.27 / 2) * (6/7), end: (0.33 / 2) * (6/7) }, "textOpacity01"],
+
+            // productImageTrans01: [0, -5, { start: 0, end: (0.33 / 2) * (6/7) }, "productImageTrans01"],
+
+            // chargingLayerY02: [100, 0, { start: (0.33 / 2) * (6/7), end: (0.66 / 2) * (6/7) }, "chargingLayerY02"],
+            // productImageScale02: [1, 0.9, { start: (0.33 / 2) * (6/7), end: (0.66 / 2) * (6/7) }, "productImageScale02"],
+            // imageBoxOpacity01: [0, 1, { start: (0.33 / 2) * (6/7), end: (0.66 / 2) * (6/7) }, "imageBoxOpacity01"],
+            // textTrans02: [80, -20, { start: (0.62 / 2) * (6/7), end: (1 / 2) * (6/7) }, "textTrans02"],
+            // textOpacity02_in: [0, 1, { start: (0.60 / 2) * (6/7), end: (0.62 / 2) * (6/7) }, "textOpacity02"],
+            // textOpacity02_out: [1, 0, { start: (0.57 / 2) * (6/7), end: (0.66 / 2) * (6/7) }, "textOpacity02"],
+
+            // chargingLayerY03: [100, 0, { start: (0.66 / 2) * (6/7), end: (1 / 2) * (6/7) }, "chargingLayerY03"],
+            // imageBoxOpacity02: [0, 1, { start: (0.66 / 2) * (6/7), end: (1 / 2) * (6/7) }, "imageBoxOpacity02"],
+            // textTrans03: [-125, -145, { start: (0.8 / 2) * (6/7), end: (0.9 / 2) * (6/7) }, "textTrans03"],
+            // textOpacity03_in: [0, 1, { start: (0.8 / 2) * (6/7), end: (0.9 / 2) * (6/7) }, "textOpacity03"],
+            // textOpacity03_out: [1, 0, { start: (0.9 / 2) * (6/7), end: (1 / 2) * (6/7) }, "textOpacity03"],
+
+            // chargingLayerY01: [0, 0, { start: 0, end: 0 }, "chargingLayerY01"],
+            // imageBoxOpacity03: [0, 1, { start: 4 / 7, end: 5 / 7 }, "imageBoxOpacity03"],
+
+            // // smart mount
+            // SM_circleScale: [0, 100, { start: (5 / 7), end: 0.17 * (3/7) + (5 / 7) }, "SM_circleScale"],
+            // SM_textTrans01: [200, 170, { start: (0.13 / 2) * (6/7) + (5 / 7), end: (0.66 / 2) * (6/7) + (5 / 7) }, "SM_textTrans01"],
+            // SM_textOpacity01_in: [0, 1, { start: (0.13 / 2) * (6/7) + (5 / 7), end: (0.27 / 2) * (6/7) + (5 / 7) }, "SM_textOpacity01"],
+            // SM_textOpacity01_out: [1, 0, { start: (0.27 / 2) * (6/7) + (5 / 7), end: (0.33 / 2) * (6/7) + (5 / 7) }, "SM_textOpacity01"],
+
+            // SM_productImageTrans01: [0, -5, { start: (5 / 7), end: (0.33 / 2) * (6/7) + (5 / 7) }, "SM_productImageTrans01"],
+
+            // SM_chargingLayerY02: [100, 0, { start: (0.33 / 2) * (6/7) + (5 / 7), end: (0.66 / 2) * (6/7) + (5 / 7) }, "SM_chargingLayerY02"],
+            // SM_productImageScale02: [1, 0.9, { start: (0.33 / 2) * (6/7) + (5 / 7), end: (0.66 / 2) * (6/7) + (5 / 7) }, "SM_productImageScale02"],
+            // SM_imageBoxOpacity01: [0, 1, { start: (0.33 / 2) * (6/7) + (5 / 7), end: (0.66 / 2) * (6/7) + (5 / 7) }, "SM_imageBoxOpacity01"],
+            // SM_textTrans02: [200, 170, { start: (0.62 / 2) * (6/7) + (5 / 7), end: (1 / 2) * (6/7) + (5 / 7) }, "SM_textTrans02"],
+            // SM_textOpacity02_in: [0, 1, { start: (0.60 / 2) * (6/7) + (5 / 7), end: (0.62 / 2) * (6/7) + (5 / 7) }, "SM_textOpacity02"],
+            // SM_textOpacity02_out: [1, 0, { start: (0.57 / 2) * (6/7) + (5 / 7), end: (0.66 / 2) * (6/7) + (5 / 7) }, "SM_textOpacity02"],
+
+            // SM_chargingLayerY03: [100, 0, { start: (0.66 / 2) * (6/7) + (5 / 7), end: (1 / 2) * (6/7) + (5 / 7) }, "SM_chargingLayerY03"],
+            // SM_imageBoxOpacity02: [0, 1, { start: (0.66 / 2) * (6/7) + (5 / 7), end: (1 / 2) * (6/7) + (5 / 7) }, "SM_imageBoxOpacity02"],
+            // SM_textTrans03: [50, 20, { start: (0.8 / 2) * (6/7) + (5 / 7), end: (0.9 / 2) * (6/7) + (5 / 7) }, "SM_textTrans03"],
+            // SM_textOpacity03_in: [0, 1, { start: (0.8 / 2) * (6/7) + (5 / 7), end: (0.9 / 2) * (6/7) + (5 / 7) }, "SM_textOpacity03"],
+            // SM_textOpacity03_out: [1, 0, { start: (0.9 / 2) * (6/7) + (5 / 7), end: (1 / 2) * (6/7) + (5 / 7) }, "SM_textOpacity03"],
+
+            // SM_chargingLayerY01: [100, 0, { start: 4 / 7, end: 5 / 7 }, "SM_chargingLayerY01"],
+            // SM_imageBoxOpacity03: [0, 1, { start: 0, end: 0 }, "SM_imageBoxOpacity03"],
         }
     }
 
@@ -670,7 +750,7 @@ img {
         if (scrollCount < 10) {
             let targetCont = animationValues.objs.cont;
 
-            targetCont.totalHeight = window.innerHeight * 3;
+            targetCont.totalHeight = window.innerHeight * 6;
             targetCont.height = targetCont.targetEl.offsetHeight;
 
             targetCont.end = targetCont.start + targetCont.totalHeight;
@@ -705,71 +785,165 @@ img {
 
             // calcValues(contValues.chargingLayerY01, currentYOffset, scrollRatio);
 
+            if (scrollRatio <= 0.5) {
+                // tripod
 
-            taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
-            taretEl.style.setProperty(contKeys.productImageTrans01, calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight) + "%");
-            taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "px");
-            taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
-
-
-            taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
-            taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
-            taretEl.style.setProperty(contKeys.productImageScale02, calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight));
-            taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "px");
-            taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.productImageTrans01, calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "px");
+                taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
 
 
-            taretEl.style.setProperty(contKeys.imageBoxOpacity02, calcValues(contValues["imageBoxOpacity02"], currentYOffset, scrollHeight));
-            taretEl.style.setProperty(contKeys.chargingLayerY03, calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight) + "%");
-            taretEl.style.setProperty(contKeys.textTrans03, calcValues(contValues["textTrans03"], currentYOffset, scrollHeight) + "%");
-            taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.productImageScale02, calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "px");
+                taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
 
 
+                taretEl.style.setProperty(contKeys.imageBoxOpacity02, calcValues(contValues["imageBoxOpacity02"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.chargingLayerY03, calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.textTrans03, calcValues(contValues["textTrans03"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
 
-            if (scrollRatio <= 0.33) {
 
-                // taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
+                if (scrollRatio <= 0.33 / 2) {
 
-                // taretEl.style.setProperty(contKeys.productImageTrans01, calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight) + "%");
+                    imageBoxTripod01.style.opacity = "1";
+                    imageBoxTripod02.style.opacity = "0";
+                    imageBoxTripod03.style.opacity = "0";
 
-                // taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "%");
+                    imageBoxSmartMount01.style.opacity = "0";
+                    imageBoxSmartMount02.style.opacity = "0";
+                    imageBoxSmartMount03.style.opacity = "0";
 
-                // taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
+                } else if (scrollRatio <= 0.66 / 2) {
 
-                imageBoxTripod01.style.opacity = "1";
-                imageBoxTripod02.style.opacity = "0";
-                imageBoxTripod03.style.opacity = "0";
+                    imageBoxTripod01.style.opacity = "1";
+                    imageBoxTripod02.style.opacity = "1";
+                    imageBoxTripod03.style.opacity = "0";
 
-            } else if (scrollRatio <= 0.66) {
+                    imageBoxSmartMount01.style.opacity = "0";
+                    imageBoxSmartMount02.style.opacity = "0";
+                    imageBoxSmartMount03.style.opacity = "0";
 
-                // taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
+                } else {
 
-                // taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
+                    imageBoxTripod01.style.opacity = "0";
+                    imageBoxTripod02.style.opacity = "1";
+                    imageBoxTripod03.style.opacity = "1";
 
-                // taretEl.style.setProperty(contKeys.productImageScale02, calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight));
-
-                // taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "%");
-
-                // taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
-
-                imageBoxTripod01.style.opacity = "1";
-                imageBoxTripod02.style.opacity = "1";
-                imageBoxTripod03.style.opacity = "0";
+                    imageBoxSmartMount01.style.opacity = "0";
+                    imageBoxSmartMount02.style.opacity = "0";
+                    imageBoxSmartMount03.style.opacity = "0";
+                }
 
             } else {
+                // smart mount
 
-                // taretEl.style.setProperty(contKeys.imageBoxOpacity02, calcValues(contValues["imageBoxOpacity02"], currentYOffset, scrollHeight));
 
-                // taretEl.style.setProperty(contKeys.chargingLayerY03, calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.imageBoxOpacity03, calcValues(contValues["imageBoxOpacity03"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.SM_chargingLayerY01, calcValues(contValues["SM_chargingLayerY01"], currentYOffset, scrollHeight) + "%");
 
-                // taretEl.style.setProperty(contKeys.textTrans03, calcValues(contValues["textTrans03"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.SM_circleScale, calcValues(contValues["SM_circleScale"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.SM_productImageTrans01, calcValues(contValues["SM_productImageTrans01"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.SM_textTrans01, calcValues(contValues["SM_textTrans01"], currentYOffset, scrollHeight) + "px");
+                taretEl.style.setProperty(contKeys.SM_textOpacity01, calcValues(contValues["SM_textOpacity01_in"], currentYOffset, scrollHeight));
 
-                // taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
 
-                imageBoxTripod01.style.opacity = "0";
-                imageBoxTripod02.style.opacity = "1";
-                imageBoxTripod03.style.opacity = "1";
+                taretEl.style.setProperty(contKeys.SM_imageBoxOpacity01, calcValues(contValues["SM_imageBoxOpacity01"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.SM_chargingLayerY02, calcValues(contValues["SM_chargingLayerY02"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.SM_productImageScale02, calcValues(contValues["SM_productImageScale02"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.SM_textTrans02, calcValues(contValues["SM_textTrans02"], currentYOffset, scrollHeight) + "px");
+                taretEl.style.setProperty(contKeys.SM_textOpacity02, calcValues(contValues["SM_textOpacity02_in"], currentYOffset, scrollHeight));
+
+
+                taretEl.style.setProperty(contKeys.SM_imageBoxOpacity02, calcValues(contValues["SM_imageBoxOpacity02"], currentYOffset, scrollHeight));
+                taretEl.style.setProperty(contKeys.SM_chargingLayerY03, calcValues(contValues["SM_chargingLayerY03"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.SM_textTrans03, calcValues(contValues["SM_textTrans03"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.SM_textOpacity03, calcValues(contValues["SM_textOpacity03_in"], currentYOffset, scrollHeight));
+
+
+
+                if (scrollRatio <= 0.33 / 2 + 0.5) {
+
+                    imageBoxTripod01.style.opacity = "0";
+                    imageBoxTripod02.style.opacity = "0";
+                    imageBoxTripod03.style.opacity = "1";
+
+                    imageBoxSmartMount01.style.opacity = "1";
+                    imageBoxSmartMount02.style.opacity = "0";
+                    imageBoxSmartMount03.style.opacity = "0";
+
+                } else if (scrollRatio <= 0.66 / 2 + 0.5) {
+
+                    imageBoxTripod01.style.opacity = "0";
+                    imageBoxTripod02.style.opacity = "0";
+                    imageBoxTripod03.style.opacity = "0";
+
+                    imageBoxSmartMount01.style.opacity = "1";
+                    imageBoxSmartMount02.style.opacity = "1";
+                    imageBoxSmartMount03.style.opacity = "0";
+
+                } else {
+
+                    imageBoxTripod01.style.opacity = "0";
+                    imageBoxTripod02.style.opacity = "0";
+                    imageBoxTripod03.style.opacity = "0";
+
+                    imageBoxSmartMount01.style.opacity = "0";
+                    imageBoxSmartMount02.style.opacity = "1";
+                    imageBoxSmartMount03.style.opacity = "1";
+                }
             }
+
+            
+
+
+            // if (scrollRatio <= 0.33) {
+
+            //     // taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
+
+            //     // taretEl.style.setProperty(contKeys.productImageTrans01, calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight) + "%");
+
+            //     // taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "%");
+
+            //     // taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
+
+            //     imageBoxTripod01.style.opacity = "1";
+            //     imageBoxTripod02.style.opacity = "0";
+            //     imageBoxTripod03.style.opacity = "0";
+
+            // } else if (scrollRatio <= 0.66) {
+
+            //     // taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
+
+            //     // taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
+
+            //     // taretEl.style.setProperty(contKeys.productImageScale02, calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight));
+
+            //     // taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "%");
+
+            //     // taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
+
+            //     imageBoxTripod01.style.opacity = "1";
+            //     imageBoxTripod02.style.opacity = "1";
+            //     imageBoxTripod03.style.opacity = "0";
+
+            // } else {
+
+            //     // taretEl.style.setProperty(contKeys.imageBoxOpacity02, calcValues(contValues["imageBoxOpacity02"], currentYOffset, scrollHeight));
+
+            //     // taretEl.style.setProperty(contKeys.chargingLayerY03, calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight) + "%");
+
+            //     // taretEl.style.setProperty(contKeys.textTrans03, calcValues(contValues["textTrans03"], currentYOffset, scrollHeight) + "%");
+
+            //     // taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
+
+            //     imageBoxTripod01.style.opacity = "0";
+            //     imageBoxTripod02.style.opacity = "1";
+            //     imageBoxTripod03.style.opacity = "1";
+            // }
 
         } 
         
