@@ -100,10 +100,11 @@ img {
 .thirdText {
     font-size: 23px;
     line-height: 104%;
+    line-height: 31.05px;
     color: #FFFFFF;
     font-weight: 700;
     transform: translate3d(var(--thirdTextTrans), -50%, 0px);
-    width: 130px;
+    width: 120px;
     text-align: right;
     top: 50%;
     opacity: var(--thirdTextOpacity);
@@ -113,9 +114,10 @@ img {
 .headText-category {
     font-size: 14px;
     line-height: 26px;
-    font-weight: 700;
+    font-weight: 400;
     color: #EC2544;
     margin-bottom: 8px;
+    font-family: 'Sofia soft';
 }
 
 .headText-name {
@@ -130,6 +132,8 @@ img {
     font-size: 14px;
     line-height: 14px;
     color: #EC2544;
+    font-weight: 500;
+    font-family: 'Sofia soft';
 }
 
 
@@ -259,7 +263,7 @@ img {
 <p>Scroll down this page to see how  sticky positioning works.</p>
 
 
-<div class="cont" style="width: 100%; height: 600vh;">
+<div class="cont" style="width: 100%; height: 400vh;">
 
     <div class="imageBox sticky imageBox2" style="z-index: 2;">
         <img data-mobile="./assets/img/tripod_backg.jpg" data-desktop="./assets/img/tripod_backg-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
@@ -424,7 +428,7 @@ img {
         if (scrollCount < 10) {
             let targetCont = animationValues.objs.cont;
 
-            targetCont.totalHeight = window.innerHeight * 5;
+            targetCont.totalHeight = window.innerHeight * 3;
             targetCont.height = targetCont.targetEl.offsetHeight;
 
             targetCont.end = targetCont.start + targetCont.totalHeight;
@@ -441,17 +445,6 @@ img {
 
     
     function playAnimation() {
-        if (scrollCount < 10) {
-            let targetCont = animationValues.objs.cont;
-
-            targetCont.totalHeight = window.innerHeight * 5;
-            targetCont.height = targetCont.targetEl.offsetHeight;
-
-            targetCont.end = targetCont.start + targetCont.totalHeight;
-
-            scrollCount += 1;
-        }
-
         const contObj = animationValues.objs;
         const taretEl = contObj.cont.targetEl;
         const contValues = animationValues.values;
