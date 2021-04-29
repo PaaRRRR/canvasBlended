@@ -159,6 +159,34 @@ img {
     --secondTextOpacity: 0;
     --thirdTextTrans: 0;
     --thirdTextOpacity: 0;
+
+
+
+
+    /* smart mount */
+    --charging-1st-layer-y-sm: "100%";
+
+    --charging-2nd-layer-y-sm: "100%";
+
+    --charging-3rd-layer-y-sm: "100%";
+
+    --imageBox1Opacity-sm: 0;
+    --imageBox2Opacity-sm: 0;
+    --imageBox3Opacity-sm: 0;
+
+
+    --scale-sm: 0;
+
+    --productImage01Trans-sm: 0;
+    --productImage02Scale-sm: 1;
+
+
+    --firstTextTrans-sm: 0;
+    --firstTextOpacity-sm: 0;
+    --secondTextTrans-sm: 0;
+    --secondTextOpacity-sm: 0;
+    --thirdTextTrans-sm: 0;
+    --thirdTextOpacity-sm: 0;
 }
 
 .overlay {
@@ -261,6 +289,98 @@ img {
 */
 
 
+
+/*
+*
+* Smart mount
+*
+*/
+
+.circle-smartMount {
+    background-color: #28AABE;
+
+    -webkit-clip-path: circle(var(--scale-sm));
+    clip-path: circle(var(--scale-sm));
+    will-change: transform;
+}
+
+.firstText-smartMount {
+    transform: translate3d(0px, var(--firstTextTrans-sm), 0px);
+    opacity: var(--firstTextOpacity-sm);
+}
+
+.secondText-smartMount {
+    transform: translate3d(0px, var(--secondTextTrans-sm), 0px);
+    opacity: var(--secondTextOpacity-sm);
+}
+
+.thirdText-smartMount {
+    transform: translate3d(var(--thirdTextTrans-sm), -50%, 0px);
+    opacity: var(--thirdTextOpacity-sm);
+}
+
+
+.imageBox-smartMount01 {
+    -webkit-clip-path: inset(var(--charging-1st-layer-y-sm) 0 0 0);
+    clip-path: inset(var(--charging-1st-layer-y-sm) 0 0 0);
+}
+
+.imageBox-smartMount02 {
+    -webkit-clip-path: inset(var(--charging-2nd-layer-y-sm) 0 0 0);
+    clip-path: inset(var(--charging-2nd-layer-y-sm) 0 0 0);
+
+    opacity: 0;
+}
+
+.imageBox-smartMount03 {
+    -webkit-clip-path: inset(var(--charging-3rd-layer-y-sm) 0 0 0);
+    clip-path: inset(var(--charging-3rd-layer-y-sm) 0 0 0);
+    
+    opacity: 0;
+}
+
+
+.imageBox-smartMount01 .overlay {
+    opacity: var(--imageBox1Opacity-sm);
+}
+
+.imageBox-smartMount02 .overlay {
+    opacity: var(--imageBox2Opacity-sm);
+}
+
+.imageBox-smartMount03 .overlay {
+    opacity: var(--imageBox3Opacity-sm);
+}
+
+.imageBox-smartMount01 .moveImg {
+    /* transform: translate3d(var(), var(), 0); */
+
+    transform: translate3d(var(--productImage01Trans-sm), var(--productImage01Trans-sm), 0);
+    will-change: transform;
+}
+
+.imageBox-smartMount02 .moveImg {
+    /* transform: translate3d(var(), var(), 0); */
+
+    transform: scale(var(--productImage02Scale-sm));
+    will-change: transform;
+}
+
+.imageBox-smartMount03 .moveImg {
+    /* transform: translate3d(var(), var(), 0); */
+
+    transform: scale();
+}
+
+
+/*
+*
+* end of Smart mount
+*
+*/
+
+
+
 @media (min-width: 750px) {
 
     .firstText, .secondText, .thirdText {
@@ -328,6 +448,50 @@ img {
         </div>
         <div class="overlay"></div>
     </div>
+
+
+    <!-- smart mount -->
+
+    <!-- <div class="imageBox sticky imageBox-smartMount01 imageBox2" style="z-index: 5;">
+        <img data-mobile="./assets/img/SM_backg.jpg" data-desktop="./assets/img/SM_backg-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
+        <div class="headText absoluteText">
+            <div class="headText-category">ACCESSORIES</div>
+            <div class="headText-name">Smart Mount</div>
+            <div class="headText-lrm">Learn more ></div>
+        </div>
+        
+        <div class="circle circle-smartMount"></div>
+        <img class="moveImg" data-mobile="./assets/img/smartMount01.png" data-desktop="./assets/img/smartMount01-desktop.png" />
+
+        <div class="firstText absoluteText firstText-smartMount">
+            Take your shots to a new level
+        </div>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="imageBox sticky imageBox-smartMount02 imageBox3" style="z-index: 6;">
+        <img data-mobile="./assets/img/SMBack.jpg" data-desktop="./assets/img/SMBack-desktop.jpg"  style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
+        <img class="moveImg" data-mobile="./assets/img/smartMount02.png" data-desktop="./assets/img/smartMount02-desktop.png" />
+
+        <div class="secondText absoluteText secondText-smartMount">
+            No BS, no unnecessary fanciness, and no weird tech.
+        </div>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="imageBox sticky imageBox-smartMount03 imageBox4" style="z-index: 7;">
+        <img data-mobile="./assets/img/SMBack.jpg" data-desktop="./assets/img/SMBack-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)" />
+        <img class="moveImg" data-mobile="./assets/img/smartMount03.png" data-desktop="./assets/img/smartMount03-desktop.png" />
+
+        <div class="thirdText absoluteText thirdText-smartMount">
+            Just extend the legs, attach your camera or Pivo Pod and create awesome stuff
+        </div>
+        <div class="overlay"></div>
+    </div> -->
+
+    <!-- end of smart mount -->
+
+
 </div>
 
 
@@ -341,6 +505,10 @@ img {
     var imageBoxTripod01 = document.querySelector(".imageBox-tripod01");
     var imageBoxTripod02 = document.querySelector(".imageBox-tripod02");
     var imageBoxTripod03 = document.querySelector(".imageBox-tripod03");
+
+    var imageBoxSmartMount01 = document.querySelector(".imageBox-smartMount01");
+    var imageBoxSmartMount02 = document.querySelector(".imageBox-smartMount02");
+    var imageBoxSmartMount03 = document.querySelector(".imageBox-smartMount03");
 
     var cont = document.querySelector(".cont");
 
@@ -407,7 +575,27 @@ img {
             textTrans02: "--secondTextTrans",
             textOpacity02: "--secondTextOpacity",
             textTrans03: "--thirdTextTrans",
-            textOpacity03: "--thirdTextOpacity"
+            textOpacity03: "--thirdTextOpacity",
+
+
+
+            SM_chargingLayerY01: "--charging-1st-layer-y-sm",
+            SM_chargingLayerY02: "--charging-2nd-layer-y-sm",
+            SM_chargingLayerY03: "--charging-3rd-layer-y-sm",
+            SM_imageBoxOpacity01: "--imageBox1Opacity-sm",
+            SM_imageBoxOpacity02: "--imageBox2Opacity-sm",
+            SM_imageBoxOpacity03: "--imageBox3Opacity-sm",
+
+            SM_productImageTrans01: "--productImage01Trans-sm",
+            SM_productImageScale02: "--productImage02Scale-sm",
+            
+            SM_circleScale: "--scale-sm",
+            SM_textTrans01: "--firstTextTrans-sm",
+            SM_textOpacity01: "--firstTextOpacity-sm",
+            SM_textTrans02: "--secondTextTrans-sm",
+            SM_textOpacity02: "--secondTextOpacity-sm",
+            SM_textTrans03: "--thirdTextTrans-sm",
+            SM_textOpacity03: "--thirdTextOpacity-sm"
         },
         values: {
             // [start point, end point, { animation range }, keyValue]
@@ -434,6 +622,29 @@ img {
             chargingLayerY01: [0, 0, { start: 0, end: 0 }, "chargingLayerY01"],
             imageBoxOpacity03: [0, 1, { start: 0, end: 0 }, "imageBoxOpacity03"],
 
+            // smart mount
+            SM_circleScale: [0, 100, { start: 0, end: 0.17 }, "SM_circleScale"],
+            SM_textTrans01: [200, 170, { start: 0.15, end: 0.27 }, "SM_textTrans01"],
+            SM_textOpacity01_in: [0, 1, { start: 0.15, end: 0.27 }, "SM_textOpacity01"],
+            SM_textOpacity01_out: [1, 0, { start: 0.27, end: 0.33 }, "SM_textOpacity01"],
+
+            SM_productImageTrans01: [0, -5, { start: 0, end: 0.33 }, "SM_productImageTrans01"],
+
+            SM_chargingLayerY02: [100, 0, { start: 0.33, end: 0.66 }, "SM_chargingLayerY02"],
+            SM_productImageScale02: [1, 0.9, { start: 0.33, end: 0.66 }, "SM_productImageScale02"],
+            SM_imageBoxOpacity01: [0, 1, { start: 0.33, end: 0.66 }, "SM_imageBoxOpacity01"],
+            SM_textTrans02: [200, 170, { start: 0.62, end: 0.64 }, "SM_textTrans02"],
+            SM_textOpacity02_in: [0, 1, { start: 0.62, end: 0.64 }, "SM_textOpacity02"],
+            SM_textOpacity02_out: [1, 0, { start: 0.57, end: 0.66 }, "SM_textOpacity02"],
+
+            SM_chargingLayerY03: [100, 0, { start: 0.66, end: 1 }, "SM_chargingLayerY03"],
+            SM_imageBoxOpacity02: [0, 1, { start: 0.66, end: 1 }, "SM_imageBoxOpacity02"],
+            SM_textTrans03: [50, 20, { start: 0.8, end: 0.9 }, "SM_textTrans03"],
+            SM_textOpacity03_in: [0, 1, { start: 0.8, end: 0.9 }, "SM_textOpacity03"],
+            SM_textOpacity03_out: [1, 0, { start: 0.9, end: 1 }, "SM_textOpacity03"],
+
+            SM_chargingLayerY01: [0, 0, { start: 0, end: 0 }, "SM_chargingLayerY01"],
+            SM_imageBoxOpacity03: [0, 1, { start: 0, end: 0 }, "SM_imageBoxOpacity03"],
         }
     }
 
@@ -557,7 +768,7 @@ img {
         
         // else if (yOffset > endPoint) {
 
-        //     var a = "it's over!" + window.pageYOffset + " : " + endPoint
+        //     var a = "it's over!" + window.pageYOffset + "w : " + endPoint
         //     alert(a);
         // }
 
