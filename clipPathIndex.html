@@ -91,7 +91,7 @@ img {
 .headText-category {
     font-size: 14px;
     line-height: 26px;
-    font-weight: 400;
+    font-weight: 700;
     color: #EC2544;
     margin-bottom: 8px;
     font-family: 'Sofia soft';
@@ -600,8 +600,8 @@ img {
         values: {
             // [start point, end point, { animation range }, keyValue]
             circleScale: [0, 100, { start: 0, end: 0.17 }, "circleScale"],
-            textTrans01: [200, 170, { start: 0.15, end: 0.27 }, "textTrans01"],
-            textOpacity01_in: [0, 1, { start: 0.15, end: 0.27 }, "textOpacity01"],
+            textTrans01: [200, -50, { start: 0.13, end: 0.66 }, "textTrans01"],
+            textOpacity01_in: [0, 1, { start: 0.13, end: 0.27 }, "textOpacity01"],
             textOpacity01_out: [1, 0, { start: 0.27, end: 0.33 }, "textOpacity01"],
 
             productImageTrans01: [0, -5, { start: 0, end: 0.33 }, "productImageTrans01"],
@@ -609,7 +609,7 @@ img {
             chargingLayerY02: [100, 0, { start: 0.33, end: 0.66 }, "chargingLayerY02"],
             productImageScale02: [1, 0.9, { start: 0.33, end: 0.66 }, "productImageScale02"],
             imageBoxOpacity01: [0, 1, { start: 0.33, end: 0.66 }, "imageBoxOpacity01"],
-            textTrans02: [200, 170, { start: 0.62, end: 0.64 }, "textTrans02"],
+            textTrans02: [200, -50, { start: 0.62, end: 1 }, "textTrans02"],
             textOpacity02_in: [0, 1, { start: 0.62, end: 0.64 }, "textOpacity02"],
             textOpacity02_out: [1, 0, { start: 0.57, end: 0.66 }, "textOpacity02"],
 
@@ -701,21 +701,36 @@ img {
 
             // calcValues(contValues.chargingLayerY01, currentYOffset, scrollRatio);
 
+
+            taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
+            taretEl.style.setProperty(contKeys.productImageTrans01, calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight) + "%");
+            taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "%");
+            taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
+
+
+            taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
+            taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
+            taretEl.style.setProperty(contKeys.productImageScale02, calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight));
+            taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "%");
+            taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
+
+
+            taretEl.style.setProperty(contKeys.imageBoxOpacity02, calcValues(contValues["imageBoxOpacity02"], currentYOffset, scrollHeight));
+            taretEl.style.setProperty(contKeys.chargingLayerY03, calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight) + "%");
+            taretEl.style.setProperty(contKeys.textTrans03, calcValues(contValues["textTrans03"], currentYOffset, scrollHeight) + "%");
+            taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
+
+
+
             if (scrollRatio <= 0.33) {
 
-                taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
+                // taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
 
-                taretEl.style.setProperty(contKeys.productImageTrans01, calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight) + "%");
+                // taretEl.style.setProperty(contKeys.productImageTrans01, calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight) + "%");
 
-                taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "%");
+                // taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "%");
 
-                taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
-
-                // if (scrollRatio < 0.27) {
-                //     taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
-                // } else {
-                //     taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_out"], currentYOffset, scrollHeight));
-                // }
+                // taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
 
                 imageBoxTripod01.style.opacity = "1";
                 imageBoxTripod02.style.opacity = "0";
@@ -723,21 +738,15 @@ img {
 
             } else if (scrollRatio <= 0.66) {
 
-                taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
+                // taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
 
-                taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
+                // taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
 
-                taretEl.style.setProperty(contKeys.productImageScale02, calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight));
+                // taretEl.style.setProperty(contKeys.productImageScale02, calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight));
 
-                taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "%");
+                // taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "%");
 
-                taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
-
-                // if (scrollRatio < 0.57) {
-                //     taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
-                // } else {
-                //     taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_out"], currentYOffset, scrollHeight));
-                // }
+                // taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
 
                 imageBoxTripod01.style.opacity = "1";
                 imageBoxTripod02.style.opacity = "1";
@@ -745,19 +754,13 @@ img {
 
             } else {
 
-                taretEl.style.setProperty(contKeys.imageBoxOpacity02, calcValues(contValues["imageBoxOpacity02"], currentYOffset, scrollHeight));
+                // taretEl.style.setProperty(contKeys.imageBoxOpacity02, calcValues(contValues["imageBoxOpacity02"], currentYOffset, scrollHeight));
 
-                taretEl.style.setProperty(contKeys.chargingLayerY03, calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight) + "%");
+                // taretEl.style.setProperty(contKeys.chargingLayerY03, calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight) + "%");
 
-                taretEl.style.setProperty(contKeys.textTrans03, calcValues(contValues["textTrans03"], currentYOffset, scrollHeight) + "%");
+                // taretEl.style.setProperty(contKeys.textTrans03, calcValues(contValues["textTrans03"], currentYOffset, scrollHeight) + "%");
 
-                taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
-
-                // if (scrollRatio < 0.9) {
-                //     taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
-                // } else {
-                //     taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_out"], currentYOffset, scrollHeight));
-                // }
+                // taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
 
                 imageBoxTripod01.style.opacity = "0";
                 imageBoxTripod02.style.opacity = "1";
