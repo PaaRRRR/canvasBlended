@@ -91,7 +91,7 @@ img {
 }
 
 .thirdText.thirdText-smartMount {
-    width: unset;
+    width: 100%;
     text-align: center;
     line-height: 104%;
     top: 0;
@@ -147,6 +147,7 @@ img {
 
 
 .cont {
+    box-sizing: border-box;
     --charging-1st-layer-y: "100%";
 
     --charging-2nd-layer-y: "100%";
@@ -227,11 +228,13 @@ img {
 
 .firstText-tripod {
     transform: translate3d(0px, var(--firstTextTrans), 0px);
+    transform: translateY(var(--firstTextTrans));
     opacity: var(--firstTextOpacity);
 }
 
 .secondText-tripod {
     transform: translate3d(0px, var(--secondTextTrans), 0px);
+    transform: translateY(var(--secondTextTrans));
     opacity: var(--secondTextOpacity);
 }
 
@@ -322,16 +325,19 @@ img {
 
 .firstText-smartMount {
     transform: translate3d(0px, var(--firstTextTrans-sm), 0px);
+    transform: translateY(var(--firstTextTrans-sm));
     opacity: var(--firstTextOpacity-sm);
 }
 
 .secondText-smartMount {
     transform: translate3d(0px, var(--secondTextTrans-sm), 0px);
+    transform: translateY(var(--secondTextTrans-sm));
     opacity: var(--secondTextOpacity-sm);
 }
 
 .thirdText-smartMount {
     transform: translate3d(0px, var(--thirdTextTrans-sm), 0px);
+    transform: translateY(var(--thirdTextTrans-sm));
     opacity: var(--thirdTextOpacity-sm);
 }
 
@@ -398,7 +404,7 @@ img {
 
 
 @media (min-width: 750px) {
-
+    /* font-size는 여기서 */
     .firstText, .secondText, .thirdText {
         font-size: 38px;
         line-height: 135%;
@@ -410,14 +416,25 @@ img {
 @media screen and (orientation: landscape) {
     /* desktop */
 
-    .secondText {
-        width: 50%;
-        left: 41%;
+    .secondText,
+    .thirdText.thirdText-smartMount {
+
         top: 18%;
         text-align: left;
+        width: 100vw;
+        padding-left: 70vw;
+        padding-right: 40px;
+        box-sizing: border-box;
     }
 
     .thirdText-tripod {
+        /* top: 18%;
+        text-align: left;
+        width: 100vw;
+        padding-left: 70vw;
+        padding-right: 40px;
+        box-sizing: border-box; */
+
         width: 50%;
         left: 110%;
     }
