@@ -63,6 +63,7 @@ img {
 
 .firstText {
     font-size: 23px;
+    font-size: 5.6vw;
     line-height: 104%;
     color: #FFFFFF;
     font-weight: 700;
@@ -70,6 +71,7 @@ img {
 
 .secondText {
     font-size: 23px;
+    font-size: 5.6vw;
     line-height: 104%;
     color: #FFFFFF;
     font-weight: 700;
@@ -77,6 +79,7 @@ img {
 
 .thirdText {
     font-size: 23px;
+    font-size: 5.6vw;
     line-height: 104%;
     line-height: 31.05px;
     color: #FFFFFF;
@@ -85,6 +88,7 @@ img {
     width: 120px;
     text-align: right;
     top: 50%;
+    left: 50%;
 }
 
 
@@ -397,7 +401,7 @@ img {
 
     .thirdText-tripod {
         width: 50%;
-        left: 30%;
+        left: 110%;
     }
 }
 
@@ -600,7 +604,7 @@ img {
         values: {
             // [start point, end point, { animation range }, keyValue]
             circleScale: [0, 100, { start: 0, end: 0.17 }, "circleScale"],
-            textTrans01: [200, -50, { start: 0.13, end: 0.66 }, "textTrans01"],
+            textTrans01: [100, 0, { start: 0.13, end: 0.66 }, "textTrans01"],
             textOpacity01_in: [0, 1, { start: 0.13, end: 0.27 }, "textOpacity01"],
             textOpacity01_out: [1, 0, { start: 0.27, end: 0.33 }, "textOpacity01"],
 
@@ -609,13 +613,13 @@ img {
             chargingLayerY02: [100, 0, { start: 0.33, end: 0.66 }, "chargingLayerY02"],
             productImageScale02: [1, 0.9, { start: 0.33, end: 0.66 }, "productImageScale02"],
             imageBoxOpacity01: [0, 1, { start: 0.33, end: 0.66 }, "imageBoxOpacity01"],
-            textTrans02: [200, -50, { start: 0.62, end: 1 }, "textTrans02"],
-            textOpacity02_in: [0, 1, { start: 0.62, end: 0.64 }, "textOpacity02"],
+            textTrans02: [80, -20, { start: 0.62, end: 1 }, "textTrans02"],
+            textOpacity02_in: [0, 1, { start: 0.60, end: 0.62 }, "textOpacity02"],
             textOpacity02_out: [1, 0, { start: 0.57, end: 0.66 }, "textOpacity02"],
 
             chargingLayerY03: [100, 0, { start: 0.66, end: 1 }, "chargingLayerY03"],
             imageBoxOpacity02: [0, 1, { start: 0.66, end: 1 }, "imageBoxOpacity02"],
-            textTrans03: [50, 20, { start: 0.8, end: 0.9 }, "textTrans03"],
+            textTrans03: [-125, -145, { start: 0.8, end: 0.9 }, "textTrans03"],
             textOpacity03_in: [0, 1, { start: 0.8, end: 0.9 }, "textOpacity03"],
             textOpacity03_out: [1, 0, { start: 0.9, end: 1 }, "textOpacity03"],
 
@@ -704,14 +708,14 @@ img {
 
             taretEl.style.setProperty(contKeys.circleScale, calcValues(contValues["circleScale"], currentYOffset, scrollHeight) + "%");
             taretEl.style.setProperty(contKeys.productImageTrans01, calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight) + "%");
-            taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "%");
+            taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "px");
             taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
 
 
             taretEl.style.setProperty(contKeys.imageBoxOpacity01, calcValues(contValues["imageBoxOpacity01"], currentYOffset, scrollHeight));
             taretEl.style.setProperty(contKeys.chargingLayerY02, calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight) + "%");
             taretEl.style.setProperty(contKeys.productImageScale02, calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight));
-            taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "%");
+            taretEl.style.setProperty(contKeys.textTrans02, calcValues(contValues["textTrans02"], currentYOffset, scrollHeight) + "px");
             taretEl.style.setProperty(contKeys.textOpacity02, calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight));
 
 
