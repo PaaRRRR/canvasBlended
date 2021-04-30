@@ -35,7 +35,7 @@ img {
     vertical-align: bottom;
     position: relative;
     max-width: 100%;
-    object-fit: unset;
+    object-fit: cover;
 }
 
 .relative {
@@ -86,6 +86,11 @@ img {
     line-height: 31.05px;
     color: #FFFFFF;
     font-weight: 700;
+}
+
+.secondText,
+.thirdText {
+    top: 2%;
 }
 
 .thirdText-tripod {
@@ -467,6 +472,10 @@ img {
         box-sizing: border-box;
         left: 0;
     }
+
+    .thirdText.thirdText-tripod {
+        top: 40%;
+    }
 }
 
 @media screen and (orientation: portrait) {
@@ -704,19 +713,19 @@ img {
             textTrans01: [100, 0, { start: (0.13 / 2) * (6/7), end: (0.66 / 2) * (6/7) }, "textTrans01"],
             textOpacity01_in: [0, 1, { start: (0.13 / 2) * (6/7), end: (0.27 / 2) * (6/7) }, "textOpacity01"],
 
-            productImageTrans01: [0, -5, { start: 0, end: (0.33 / 2) * (6/7) }, "productImageTrans01"],
+            productImageTrans01: [0, -3.33, { start: 0, end: (0.33 / 2) * (6/7) }, "productImageTrans01"],
 
             chargingLayerY02: [100, 0, { start: (0.33 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "chargingLayerY02"],
             productImageScale02: [1, 0.9, { start: (0.33 / 2) * (6/7), end: (0.66 / 2) * (6/7) }, "productImageScale02"],
             imageBoxOpacity01: [0, 1, { start: (0.33 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "imageBoxOpacity01"],
-            textTrans02: [80, -20, { start: (0.62 / 2) * (6/7), end: (1 / 2) * (6/7) }, "textTrans02"],
-            textOpacity02_in: [0, 1, { start: (0.60 / 2) * (6/7), end: (0.62 / 2) * (6/7) }, "textOpacity02"],
+            textTrans02: [80, 50, { start: (0.48 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "textTrans02"],
+            textOpacity02_in: [0, 1, { start: (0.48 / 2) * (6/7), end: (0.54 / 2) * (6/7) }, "textOpacity02"],
 
             chargingLayerY03: [100, 0, { start: (0.66 / 2) * (6/7), end: (0.92 / 2) * (6/7) }, "chargingLayerY03"],
             productImageTrans03: [0, -2, { start: (0.66 / 2) * (6/7), end: (1 / 2) * (6/7) }, "productImageTrans03"],
             imageBoxOpacity02: [0, 1, { start: (0.66 / 2) * (6/7), end: (0.92 / 2) * (6/7) }, "imageBoxOpacity02"],
-            textTrans03: [-30, -40, { start: (0.8 / 2) * (6/7), end: (0.9 / 2) * (6/7) }, "textTrans03"],
-            textOpacity03_in: [0, 1, { start: (0.8 / 2) * (6/7), end: (0.9 / 2) * (6/7) }, "textOpacity03"],
+            textTrans03: [-30, -40, { start: (0.82 / 2) * (6/7), end: (0.92 / 2) * (6/7) }, "textTrans03"],
+            textOpacity03_in: [0, 1, { start: (0.82 / 2) * (6/7), end: (0.88 / 2) * (6/7) }, "textOpacity03"],
 
             chargingLayerY01: [0, 0, { start: 0, end: 0 }, "chargingLayerY01"],
             imageBoxOpacity03: [0, 1, { start: 3 / 7, end: 4 / 7 }, "imageBoxOpacity03"],
@@ -726,19 +735,19 @@ img {
             SM_textTrans01: [100, 0, { start: (0.13 / 2) * (6/7) + (4 / 7), end: (0.66 / 2) * (6/7) + (4 / 7) }, "SM_textTrans01"],
             SM_textOpacity01_in: [0, 1, { start: (0.13 / 2) * (6/7) + (4 / 7), end: (0.27 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity01"],
 
-            SM_productImageTrans01: [0, -5, { start: (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_productImageTrans01"],
+            SM_productImageTrans01: [0, -3.33, { start: (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_productImageTrans01"],
 
             SM_chargingLayerY02: [100, 0, { start: (0.33 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_chargingLayerY02"],
             SM_productImageScale02: [1, 0.9, { start: (0.33 / 2) * (6/7) + (4 / 7), end: (0.66 / 2) * (6/7) + (4 / 7) }, "SM_productImageScale02"],
             SM_imageBoxOpacity01: [0, 1, { start: (0.33 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_imageBoxOpacity01"],
-            SM_textTrans02: [80, -20, { start: (0.62 / 2) * (6/7) + (4 / 7), end: (1 / 2) * (6/7) + (4 / 7) }, "SM_textTrans02"],
-            SM_textOpacity02_in: [0, 1, { start: (0.60 / 2) * (6/7) + (4 / 7), end: (0.62 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity02"],
+            SM_textTrans02: [80, 50, { start: (0.48 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_textTrans02"],
+            SM_textOpacity02_in: [0, 1, { start: (0.48 / 2) * (6/7) + (4 / 7), end: (0.54 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity02"],
 
             SM_chargingLayerY03: [100, 0, { start: (0.66 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_chargingLayerY03"],
             SM_productImageTrans03: [0, -2, { start: (0.66 / 2) * (6/7) + (4 / 7), end: (1 / 2) * (6/7) + (4 / 7) }, "SM_productImageTrans03"],
             SM_imageBoxOpacity02: [0, 1, { start: (0.66 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_imageBoxOpacity02"],
-            SM_textTrans03: [80, 20, { start: (0.93 / 2) * (6/7) + (4 / 7), end: (1 / 2) * (6/7) + (4 / 7) }, "SM_textTrans03"],
-            SM_textOpacity03_in: [0, 1, { start: (0.8 / 2) * (6/7) + (4 / 7), end: (0.9 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity03"],
+            SM_textTrans03: [80, 50, { start: (0.82 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_textTrans03"],
+            SM_textOpacity03_in: [0, 1, { start: (0.82 / 2) * (6/7) + (4 / 7), end: (0.88 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity03"],
 
             SM_chargingLayerY01: [100, 0, { start: 3 / 7, end: 4 / 7 }, "SM_chargingLayerY01"],
             SM_imageBoxOpacity03: [0, 1, { start: 0, end: 0 }, "SM_imageBoxOpacity03"],
@@ -979,7 +988,7 @@ img {
 
             taretEl.style.setProperty(contKeys.SM_imageBoxOpacity02, "1");
             taretEl.style.setProperty(contKeys.SM_chargingLayerY03, "0%");
-            taretEl.style.setProperty(contKeys.SM_textTrans03, "20px");
+            taretEl.style.setProperty(contKeys.SM_textTrans03, "50px");
             taretEl.style.setProperty(contKeys.SM_textOpacity03, "1");
         
         }
