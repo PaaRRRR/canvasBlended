@@ -23,7 +23,7 @@ div.sticky {
 }
 
 
-.imageBox {
+.acc-section-imageBox {
     width: fit-content;
     text-align: center;
     overflow: hidden;
@@ -42,7 +42,7 @@ img {
     position: relative;
 }
 
-.circle {
+.acc-section-circle {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -129,27 +129,7 @@ img {
 
 
 
-
-
-
-.imageBox2 {
-    
-
-    /* opacity: var(--imageBox1Opacity); */
-}
-
-.imageBox3 {
-    
-    /* opacity: var(--imageBox2Opacity); */
-}
-
-.imageBox4 {
-    
-    /* opacity: var(--imageBox3Opacity); */
-}
-
-
-.cont {
+.acc-section-cont {
     box-sizing: border-box;
     --charging-1st-layer-y: "100%";
 
@@ -491,9 +471,9 @@ img {
 <p>Scroll down this page to see how  sticky positioning works.</p>
 
 
-<div class="cont" style="width: 100%; height: 800vh;">
+<div class="acc-section-cont" style="width: 100%; height: 800vh;">
 
-    <div class="imageBox sticky imageBox-tripod01 imageBox2" style="z-index: 2;">
+    <div class="acc-section-imageBox sticky imageBox-tripod01" style="z-index: 2;">
         <!-- <img data-mobile="./assets/img/tripod/tripod_backg-mobile.jpg" data-desktop="./assets/img/tripod/tripod_backg-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  /> -->
         <div class="headText absoluteText">
             <div class="headText-category">ACCESSORIES</div>
@@ -501,7 +481,7 @@ img {
             <div class="headText-lrm">Learn more ></div>
         </div>
         
-        <div class="circle circle-tripod"></div>
+        <div class="acc-section-circle circle-tripod"></div>
         <img class="moveImg" data-mobile="./assets/img/tripod/tripod01-mobile.png" data-desktop="./assets/img/tripod/tripod01-desktop.png" />
 
         <div class="firstText absoluteText firstText-tripod">
@@ -510,7 +490,7 @@ img {
         <div class="overlay"></div>
     </div>
 
-    <div class="imageBox sticky imageBox-tripod02 imageBox3" style="z-index: 3;">
+    <div class="acc-section-imageBox sticky imageBox-tripod02" style="z-index: 3;">
         <img data-mobile="./assets/img/greenBack-mobile.jpg" data-desktop="./assets/img/greenBack-desktop.jpg"  style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
         <img class="moveImg" data-mobile="./assets/img/tripod/tripod02-mobile.png" data-desktop="./assets/img/tripod/tripod02-desktop.png" />
 
@@ -520,7 +500,7 @@ img {
         <div class="overlay"></div>
     </div>
 
-    <div class="imageBox sticky imageBox-tripod03 imageBox4" style="z-index: 4;">
+    <div class="acc-section-imageBox sticky imageBox-tripod03" style="z-index: 4;">
         <img data-mobile="./assets/img/greenBack-mobile.jpg" data-desktop="./assets/img/greenBack-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)" />
         <img class="moveImg" data-mobile="./assets/img/tripod/tripod03-mobile.png" data-desktop="./assets/img/tripod/tripod03-desktop.png" />
 
@@ -533,7 +513,7 @@ img {
 
     <!-- smart mount -->
 
-    <div class="imageBox sticky imageBox-smartMount01 imageBox2" style="z-index: 5;">
+    <div class="acc-section-imageBox sticky imageBox-smartMount01" style="z-index: 5;">
         <!-- <img data-mobile="./assets/img/smartMount/SM_backg-mobile.jpg" data-desktop="./assets/img/smartMount/SM_backg-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  /> -->
         <div class="headText absoluteText">
             <div class="headText-category">ACCESSORIES</div>
@@ -541,7 +521,7 @@ img {
             <div class="headText-lrm">Learn more ></div>
         </div>
         
-        <div class="circle circle-smartMount"></div>
+        <div class="acc-section-circle circle-smartMount"></div>
         <img class="moveImg" data-mobile="./assets/img/smartMount/smartMount01-mobile.png" data-desktop="./assets/img/smartMount/smartMount01-desktop.png" />
 
         <div class="firstText absoluteText firstText-smartMount">
@@ -550,7 +530,7 @@ img {
         <div class="overlay"></div>
     </div>
 
-    <div class="imageBox sticky imageBox-smartMount02 imageBox3" style="z-index: 6;">
+    <div class="acc-section-imageBox sticky imageBox-smartMount02" style="z-index: 6;">
         <img data-mobile="./assets/img/yellowBack-mobile.jpg" data-desktop="./assets/img/yellowBack-desktop.jpg"  style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"  />
         <img class="moveImg" data-mobile="./assets/img/smartMount/smartMount02-mobile.png" data-desktop="./assets/img/smartMount/smartMount02-desktop.png" />
 
@@ -560,7 +540,7 @@ img {
         <div class="overlay"></div>
     </div>
 
-    <div class="imageBox sticky imageBox-smartMount03 imageBox4" style="z-index: 7;">
+    <div class="acc-section-imageBox sticky imageBox-smartMount03" style="z-index: 7;">
         <img data-mobile="./assets/img/yellowBack-mobile.jpg" data-desktop="./assets/img/yellowBack-desktop.jpg" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)" />
         <img class="moveImg" data-mobile="./assets/img/smartMount/smartMount03-mobile.png" data-desktop="./assets/img/smartMount/smartMount03-desktop.png" />
 
@@ -591,7 +571,7 @@ img {
     var imageBoxSmartMount02 = document.querySelector(".imageBox-smartMount02");
     var imageBoxSmartMount03 = document.querySelector(".imageBox-smartMount03");
 
-    var cont = document.querySelector(".cont");
+    var cont = document.querySelector(".acc-section-cont");
 
     function getValue(rangeArr, percentage) {
         // rangeArr: [startPoint, endPoint];
@@ -632,7 +612,7 @@ img {
     let animationValues = {
         objs: {
             cont: {
-                targetEl: document.querySelector(".cont"),
+                targetEl: document.querySelector(".acc-section-cont"),
                 height: 0,
                 totalHeight: 0,
                 start: 0,
