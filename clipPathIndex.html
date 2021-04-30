@@ -159,6 +159,7 @@ img {
 
     --productImage01Trans: 0;
     --productImage02Scale: 1;
+    --productImage03Trans: 0;
 
 
     --firstTextTrans: "100px";
@@ -187,6 +188,7 @@ img {
 
     --productImage01Trans-sm: 0;
     --productImage02Scale-sm: 1;
+    --productImage03Trans-sm: 0;
 
 
     --firstTextTrans-sm: "100px";
@@ -215,7 +217,7 @@ img {
 
 
 .circle-tripod {
-    background-color: #28AABE;
+    background-color: #00A9C3;
 
     -webkit-clip-path: circle(var(--scale));
     clip-path: circle(var(--scale));
@@ -255,7 +257,7 @@ img {
     clip-path: inset(var(--charging-2nd-layer-y) 0 0 0);
 
     opacity: 0;
-    background-color: #28AABE;
+    background-color: #00A9C3;
 }
 
 .imageBox-tripod03 {
@@ -263,7 +265,7 @@ img {
     clip-path: inset(var(--charging-3rd-layer-y) 0 0 0);
     
     opacity: 0;
-    background-color: #28AABE;
+    background-color: #00A9C3;
 }
 
 .imageBox-tripod01 .overlay {
@@ -294,8 +296,8 @@ img {
 
 .imageBox-tripod03 .moveImg {
     /* transform: translate3d(var(), var(), 0); */
-
-    transform: scale();
+    transform: translateX(var(--productImage03Trans));
+    will-change: transform;
 }
 
 /*
@@ -397,7 +399,8 @@ img {
 
 .imageBox-smartMount03 .moveImg {
 
-    transform: scale();
+    transform: translateX(var(--productImage03Trans-sm));
+    will-change: transform;
 }
 
 
@@ -624,6 +627,7 @@ img {
 
             productImageTrans01: "--productImage01Trans",
             productImageScale02: "--productImage02Scale",
+            productImageTrans03: "--productImage03Trans",
             
             circleScale: "--scale",
             textTrans01: "--firstTextTrans",
@@ -644,6 +648,7 @@ img {
 
             SM_productImageTrans01: "--productImage01Trans-sm",
             SM_productImageScale02: "--productImage02Scale-sm",
+            SM_productImageTrans03: "--productImage03Trans-sm",
             
             SM_circleScale: "--scale-sm",
             SM_textTrans01: "--firstTextTrans-sm",
@@ -697,6 +702,7 @@ img {
             textOpacity02_out: [1, 0, { start: (0.57 / 2) * (6/7), end: (0.66 / 2) * (6/7) }, "textOpacity02"],
 
             chargingLayerY03: [100, 0, { start: (0.66 / 2) * (6/7), end: (1 / 2) * (6/7) }, "chargingLayerY03"],
+            productImageTrans03: [0, -2, { start: (0.66 / 2) * (6/7), end: (1 / 2) * (6/7) }, "productImageTrans03"],
             imageBoxOpacity02: [0, 1, { start: (0.66 / 2) * (6/7), end: (1 / 2) * (6/7) }, "imageBoxOpacity02"],
             textTrans03: [-30, -40, { start: (0.8 / 2) * (6/7), end: (0.9 / 2) * (6/7) }, "textTrans03"],
             textOpacity03_in: [0, 1, { start: (0.8 / 2) * (6/7), end: (0.9 / 2) * (6/7) }, "textOpacity03"],
@@ -721,6 +727,7 @@ img {
             SM_textOpacity02_out: [1, 0, { start: (0.57 / 2) * (6/7) + (4 / 7), end: (0.66 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity02"],
 
             SM_chargingLayerY03: [100, 0, { start: (0.66 / 2) * (6/7) + (4 / 7), end: (1 / 2) * (6/7) + (4 / 7) }, "SM_chargingLayerY03"],
+            SM_productImageTrans03: [0, -2, { start: (0.66 / 2) * (6/7) + (4 / 7), end: (1 / 2) * (6/7) + (4 / 7) }, "SM_productImageTrans03"],
             SM_imageBoxOpacity02: [0, 1, { start: (0.66 / 2) * (6/7) + (4 / 7), end: (1 / 2) * (6/7) + (4 / 7) }, "SM_imageBoxOpacity02"],
             SM_textTrans03: [80, 20, { start: (0.93 / 2) * (6/7) + (4 / 7), end: (1 / 2) * (6/7) + (4 / 7) }, "SM_textTrans03"],
             SM_textOpacity03_in: [0, 1, { start: (0.8 / 2) * (6/7) + (4 / 7), end: (0.9 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity03"],
@@ -802,6 +809,7 @@ img {
 
                 taretEl.style.setProperty(contKeys.imageBoxOpacity02, calcValues(contValues["imageBoxOpacity02"], currentYOffset, scrollHeight));
                 taretEl.style.setProperty(contKeys.chargingLayerY03, calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.productImageTrans03, calcValues(contValues["productImageTrans03"], currentYOffset, scrollHeight) + "%");
                 taretEl.style.setProperty(contKeys.textTrans03, calcValues(contValues["textTrans03"], currentYOffset, scrollHeight) + "%");
                 taretEl.style.setProperty(contKeys.textOpacity03, calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight));
 
@@ -859,6 +867,7 @@ img {
 
                 taretEl.style.setProperty(contKeys.SM_imageBoxOpacity02, calcValues(contValues["SM_imageBoxOpacity02"], currentYOffset, scrollHeight));
                 taretEl.style.setProperty(contKeys.SM_chargingLayerY03, calcValues(contValues["SM_chargingLayerY03"], currentYOffset, scrollHeight) + "%");
+                taretEl.style.setProperty(contKeys.SM_productImageTrans03, calcValues(contValues["SM_productImageTrans03"], currentYOffset, scrollHeight) + "%");
                 taretEl.style.setProperty(contKeys.SM_textTrans03, calcValues(contValues["SM_textTrans03"], currentYOffset, scrollHeight) + "px");
                 taretEl.style.setProperty(contKeys.SM_textOpacity03, calcValues(contValues["SM_textOpacity03_in"], currentYOffset, scrollHeight));
 
