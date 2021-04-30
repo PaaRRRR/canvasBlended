@@ -91,7 +91,7 @@ img {
     width: 40vw;
     text-align: right;
     top: 50%;
-    left: 6%;
+    left: 2%;
 }
 
 
@@ -415,10 +415,16 @@ img {
 @media (min-width: 750px) {
     /* font-size는 여기서 */
     .firstText, .secondText, .thirdText {
-        font-size: 38px;
+        font-size: 20px;
         line-height: 135%;
     }
+}
 
+@media (min-width: 1000px) {
+    /* font-size는 여기서 */
+    .firstText, .secondText, .thirdText {
+        font-size: 38px;
+    }
 }
 
 
@@ -433,26 +439,31 @@ img {
     }
 
     .secondText {
-        top: 18%;
+        top: 30%;
         text-align: left;
         width: 100vw;
         padding-left: 64vw;
         padding-right: 40px;
+
+        padding-left: 50vw;
+        padding-right: 13vw;
+
+
         box-sizing: border-box;
     }
 
     .thirdText {
-        top: 18%;
+        top: 30%;
         text-align: left;
         width: 100vw;
         padding-left: 70vw;
         padding-right: 40px;
+
+        padding-left: 50vw;
+        padding-right: 13vw;
+
         box-sizing: border-box;
         left: 0;
-    }
-
-    .thirdText.thirdText-tripod {
-        top: 27%;
     }
 }
 
