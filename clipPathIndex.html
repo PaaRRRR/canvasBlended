@@ -34,6 +34,8 @@ img {
     width: auto;
     vertical-align: bottom;
     position: relative;
+    max-width: 100%;
+    object-fit: unset;
 }
 
 .relative {
@@ -802,6 +804,8 @@ img {
 
             // calcValues(contValues.chargingLayerY01, currentYOffset, scrollRatio);
 
+            // charging-layer-y를 할 경우 이전의 charging-layer-y 애니메이션이 끝나야 한다.
+
             if (scrollRatio <= 0.5 * (6/7)) {
                 // tripod
 
@@ -893,6 +897,8 @@ img {
                     imageBoxSmartMount01.style.opacity = "1";
                     imageBoxSmartMount02.style.opacity = "0";
                     imageBoxSmartMount03.style.opacity = "0";
+
+                    taretEl.style.setProperty(contKeys.chargingLayerY03, "0%");
 
                 } else if (scrollRatio <= (0.66 / 2) * (6/7) + (4 / 7)) {
 
