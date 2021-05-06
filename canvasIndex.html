@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="./assets/fonts.css" rel="stylesheet"/>
+<link href="./assets/style.css" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .acc-section-sticky-cont {
+
+            position: sticky;
+            top: 0;
+            left: 0;
+        }
+
+        .absoluteText {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .headText {
+        }
+
+        .headText-smartMount {
+            transform: translate3d(0, 50px, 0);
+        }
+
+        .firstText {
+            font-size: 23px;
+            line-height: 104%;
+            color: #FFFFFF;
+            font-weight: 700;
+            transform: translate3d(0px, 400%, 0px);
+            opacity: 0;
+        }
+
+        .secondText {
+            font-size: 23px;
+            line-height: 104%;
+            color: #FFFFFF;
+            font-weight: 700;
+            transform: translate3d(0px, 100%, 0px);
+            opacity: 0;
+        }
+
+        .thirdText {
+            font-size: 23px;
+            line-height: 104%;
+            color: #FFFFFF;
+            font-weight: 700;
+            transform: translate3d(0px, 400%, 0px);
+            opacity: 0;
+            width: 130px;
+            text-align: right;
+            top: 50%;
+        }
+
+        .headText-category {
+            font-size: 14px;
+            line-height: 26px;
+            font-weight: 700;
+            color: #EC2544;
+            margin-bottom: 8px;
+        }
+
+        .headText-name {
+            font-size: 30px;
+            line-height: 104%;
+            font-weight: 700;
+            color: #201D1D;
+            margin-bottom: 8px;
+        }
+
+        .headText-lrm {
+            font-size: 14px;
+            line-height: 14px;
+            color: #EC2544;
+        }
+
+
+        .absoluteText {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+
+
+        .firstText {
+            font-size: 23px;
+            font-size: 5.6vw;
+            line-height: 104%;
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+
+        .thirdText-tripod {
+            width: 120px;
+            width: 29vw;
+            text-align: right;
+            top: 50%;
+            left: 13%;
+        }
+
+
+
+
+        .firstText-tripod {
+            transform: translate3d(0px, var(--firstTextTrans), 0px);
+            transform: translateY(var(--firstTextTrans));
+            opacity: var(--firstTextOpacity);
+        }
+
+
+
+        .acc-section-cont {
+            box-sizing: border-box;
+            
+            --headTextTrans: 50%;
+
+            --firstTextTrans: "100px";
+            --firstTextOpacity: 0;
+            --secondTextTrans: 0;
+            --secondTextOpacity: 0;
+            --thirdTextTrans: 0;
+            --thirdTextOpacity: 0;
+
+
+
+
+            /* smart mount */
+
+            --headTextTrans-sm: 50%;
+
+            --firstTextTrans-sm: "100px";
+            --firstTextOpacity-sm: 0;
+            --secondTextTrans-sm: 0;
+            --secondTextOpacity-sm: 0;
+            --thirdTextTrans-sm: 0;
+            --thirdTextOpacity-sm: 0;
+        }
+
+        .canvas-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: #000;
+            opacity: 1;
+        }
+        .headText-smartMount,
+        .firstText-smartMount,
+        .secondText-smartMount,
+        .thirdText-smartMount {
+            opacity: 0;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div>Hello world!</div>
+    <div>If you want to scroll, sticky world!</div>
+    <div>Bye world!</div>
+    <div class="acc-section-cont" style="width: 100%; height: 800vh;">
+        <div class="acc-section-sticky-cont">
+            <div class="headText absoluteText headText-tripod">
+                <div class="headText-category">ACCESSORIES</div>
+                <div class="headText-name">Tripod</div>
+                <div class="headText-lrm">Learn more ></div>
+            </div>
+
+            <div class="firstText absoluteText firstText-tripod">
+                Take your shots to a new level
+            </div>
+
+            <div class="secondText absoluteText secondText-tripod">
+                No BS, no unnecessary fanciness, and no weird tech.
+            </div>
+
+            <div class="thirdText absoluteText thirdText-tripod">
+                Just extend the legs, attach your camera or Pivo Pod and create awesome stuff
+            </div>
+
+            <div class="headText absoluteText headText-smartMount">
+                <div class="headText-category">ACCESSORIES</div>
+                <div class="headText-name">Smart Mount</div>
+                <div class="headText-lrm">Learn more ></div>
+            </div>
+
+            <div class="firstText absoluteText firstText-smartMount">
+                Capture from insane angles!
+            </div>
+
+            <div class="secondText absoluteText secondText-smartMount">
+                Switch from vertical to horizontal
+            </div>
+
+            <div class="thirdText absoluteText thirdText-smartMount">
+                Compatible with all smartphones on the market
+            </div>
+
+            
+            <canvas
+                id="compareSlider-canvas"
+                class="sample-canvas"
+                width="1920"
+                height="1080"
+            >
+            Your browser does not support the canvas element.
+            </canvas>
+        </div>
+    </div>
+
+    <div style="background: wheat; width: 100%; height: 150vh;">
+        hello world!
+    </div>
+    
+
+	<script>
+		const canvas = document.querySelector('.sample-canvas');
+		const context = canvas.getContext('2d');
+		const videoImages = [];
+        const imageUrl = {
+            tripod: {
+                // background, 01, 02, 03
+                desktop: ['./assets/img/greenBack-desktop.jpg', './assets/img/tripod/tripod_backg-desktop.jpg', './assets/img/tripod/tripod01-desktop.png', './assets/img/tripod/tripod02-desktop.png', './assets/img/tripod/tripod03-desktop.png'], 
+                mobile: ['./assets/img/greenBack-mobile.jpg', './assets/img/tripod/tripod_backg-mobile.jpg', './assets/img/tripod/tripod01-mobile.png', './assets/img/tripod/tripod02-mobile.png', './assets/img/tripod/tripod03-mobile.png']
+            },
+            smartMount: {
+                desktop: ['./assets/img/yellowBack-desktop.jpg', './assets/img/smartMount/SM_backg-desktop.jpg', './assets/img/smartMount/smartMount01-desktop.png', './assets/img/smartMount/smartMount02-desktop.png', './assets/img/smartMount/smartMount03-desktop.png'],
+                mobile: ['./assets/img/yellowBack-mobile.jpg', './assets/img/smartMount/SM_backg-mobile.jpg', './assets/img/smartMount/smartMount01-mobile.png', './assets/img/smartMount/smartMount02-mobile.png', './assets/img/smartMount/smartMount03-mobile.png']
+            }
+        }
+
+        const canvasRatio = {
+            desktop: {
+                width: 2880,
+                height: 1446,
+                WHRatio: 1446 / 2880
+            },
+            mobile: {
+                width: 828,
+                height: 1422,
+                WHRatio: 1422 / 828
+            }
+        }
+
+        let screen = {
+            width: 0,
+            height: 0,
+            ratio: 0,
+            type: "mobile"
+        };
+
+        let canvasImgs = {};
+
+        var currentDevice = "mobile";
+        let canvasWidth = 0, canvasHeight = 0;
+
+        let scrollCount = 0;
+
+        let animationValues = {
+            objs: {
+                cont: {
+                    targetEl: document.querySelector(".acc-section-cont"),
+                    height: 0,
+                    totalHeight: 0,
+                    start: 0,
+                    end: 0
+                },
+                tripod: {
+                    headTextEl: document.querySelector(".headText-tripod"),
+                    firstTextEl: document.querySelector(".firstText-tripod"),
+                    secondTextEl: document.querySelector(".secondText-tripod"),
+                    thirdTextEl: document.querySelector(".thirdText-tripod"),
+                },
+                smartMount: {
+                    headTextEl: document.querySelector(".headText-smartMount"),
+                    firstTextEl: document.querySelector(".firstText-smartMount"),
+                    secondTextEl: document.querySelector(".secondText-smartMount"),
+                    thirdTextEl: document.querySelector(".thirdText-smartMount"),
+                }
+
+            },
+            keys: {
+                headTextTrans: "--headTextTrans",
+                textTrans01: "--firstTextTrans",
+                textOpacity01: "--firstTextOpacity",
+                textTrans02: "--secondTextTrans",
+                textOpacity02: "--secondTextOpacity",
+                textTrans03: "--thirdTextTrans",
+                textOpacity03: "--thirdTextOpacity",
+            },
+            values: {
+
+                circleScale: [0, 5, { start: 0, end: (0.33 / 2) * (6/7) }, "circleScale"],
+                productImageTrans01: [0, -12, { start: 0, end: (0.12 / 2) * (6/7) }, "productImageTrans01"],
+                headTextTrans: [50, -300, { start: (0.12 / 2) * (6/7), end: (0.33 / 2) * (6/7) }, "headTextTrans"],
+
+                
+                productImageScale02: [1, 0.9, { start: (0.45 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "productImageScale02"],
+                chargingLayerY02: [0, 1, { start: (0.33 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "chargingLayerY02"],
+
+                productImageTrans03: [-20, 0, { start: (0.79 / 2) * (6/7), end: (0.92 / 2) * (6/7) }, "productImageTrans03"],
+                chargingLayerY03: [0, 1, { start: (0.66 / 2) * (6/7), end: (0.92 / 2) * (6/7) }, "chargingLayerY03"],
+
+                SM_chargingLayerY01: [0, 1, { start: 3 / 7, end: 4 / 7 }, "SM_chargingLayerY01"],
+
+
+                SM_circleScale: [0, 5, { start: (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_circleScale"],
+                SM_productImageTrans01: [0, -12, { start: (4 / 7), end: (0.12 / 2) * (6/7) + (4 / 7) }, "SM_productImageTrans01"],
+
+
+                SM_productImageScale02: [1, 0.9, { start: (0.45 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_productImageScale02"],
+                SM_chargingLayerY02: [0, 1, { start: (0.33 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_chargingLayerY02"],
+
+
+                SM_productImageTrans03: [-20, 0, { start: (0.79 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_productImageTrans03"],
+                SM_chargingLayerY03: [0, 1, { start: (0.66 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_chargingLayerY03"],
+
+
+                // text transition
+
+                
+                textTrans01: [100, 70, { start: (0.15 / 2) * (6/7), end: (0.33 / 2) * (6/7) }, "textTrans01"],
+                textOpacity01_in: [0, 1, { start: (0.15 / 2) * (6/7), end: (0.27 / 2) * (6/7) }, "textOpacity01"],
+                textOpacity01_out: [1, 0, { start: (0.33 / 2) * (6/7), end: (0.54 / 2) * (6/7) }, "textOpacity01"],
+
+                
+                textTrans02: [90, 60, { start: (0.54 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "textTrans02"],
+                textOpacity02_in: [0, 1, { start: (0.54 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "textOpacity02"],
+                textOpacity02_out: [1, 0, { start: (0.66 / 2) * (6/7), end: (0.87 / 2) * (6/7) }, "textOpacity02"],
+
+                
+                textTrans03: [-50, -70, { start: (0.84 / 2) * (6/7), end: (0.92 / 2) * (6/7) }, "textTrans03"],
+                textOpacity03_in: [0, 1, { start: (0.84 / 2) * (6/7), end: (0.88 / 2) * (6/7) }, "textOpacity03"],
+                textOpacity03_out: [1, 0, { start: (1 / 2) * (6/7), end: (3.5 / 7) }, "textOpacity02"],
+
+                chargingLayerY01: [0, 0, { start: 0, end: 0 }, "chargingLayerY01"],
+                SM_headTextOpacity_in: [0, 1, { start: (3.9 / 7), end: (4 / 7) }, "SM_headTextTrans"],
+
+                // smart mount
+
+                SM_headTextTrans: [50, -300, { start: (0.12 / 2) * (6/7) + (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_headTextTrans"],
+                
+                SM_textTrans01: [100, 70, { start: (0.15 / 2) * (6/7) + (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_textTrans01"],
+                SM_textOpacity01_in: [0, 1, { start: (0.15 / 2) * (6/7) + (4 / 7), end: (0.27 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity01"],
+                SM_textOpacity01_out: [1, 0, { start: (0.33 / 2) * (6/7) + (4 / 7), end: (0.54 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity01"],
+                
+                SM_textTrans02: [90, 60, { start: (0.54 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_textTrans02"],
+                SM_textOpacity02_in: [0, 1, { start: (0.54 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity02"],
+                SM_textOpacity02_out: [1, 0, { start: (0.66 / 2) * (6/7) + (4 / 7), end: (0.87 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity02"],
+                
+                SM_textTrans03: [90, 60, { start: (0.88 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_textTrans03"],
+                SM_textOpacity03_in: [0, 1, { start: (0.88 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity03"],
+                SM_textOpacity03_out: [1, 0, { start: (1 / 2) * (6/7) + (4 / 7), end: (3.5 / 7) + (4 / 7) }, "SM_textOpacity03"],
+
+            }
+        }
+
+        function calcValues(values, currentYOffset, scrollHeight) {
+            let rv;
+            // 현재 씬(스크롤섹션)에서 스크롤된 범위를 비율로 구하기
+            const scrollRatio = currentYOffset / scrollHeight;
+
+            if (values.length === 4) {
+                // start ~ end 사이에 애니메이션 실행
+                const partScrollStart = values[2].start * scrollHeight;
+                const partScrollEnd = values[2].end * scrollHeight;
+                const partScrollHeight = partScrollEnd - partScrollStart;
+
+                if (currentYOffset >= partScrollStart && currentYOffset <= partScrollEnd) {
+                    rv = (currentYOffset - partScrollStart) / partScrollHeight * (values[1] - values[0]) + values[0];
+                } else if (currentYOffset < partScrollStart) {
+                    rv = values[0];
+                } else if (currentYOffset > partScrollEnd) {
+                    rv = values[1];
+                }
+            } else {
+                rv = scrollRatio * (values[1] - values[0]) + values[0];
+            }
+
+            return rv;
+        }
+
+		function init() {
+
+            // checkDevice();
+            // lazyLoad();
+
+            var curFullWidth = document.body.clientWidth;
+
+            canvas.width = curFullWidth;
+            canvas.height = curFullWidth * canvasRatio[currentDevice].WHRatio;
+
+            canvasWidth = canvas.width;
+            canvasHeight = canvas.height;
+
+            
+            context.drawImage(canvasImgs.tripod[1], 0, 0, canvasWidth, canvasHeight);
+            context.drawImage(canvasImgs.tripod[2], 0, 0, canvasWidth, canvasHeight);
+
+            animationValues.objs.cont.start = animationValues.objs.cont.targetEl.offsetTop;
+            
+            window.addEventListener("scroll", function(e) {
+
+                if (scrollCount < 10) {
+                    let targetCont = animationValues.objs.cont;
+
+                    targetCont.totalHeight = window.innerHeight * 7;
+                    targetCont.height = targetCont.targetEl.offsetHeight;
+
+                    targetCont.end = targetCont.start + targetCont.totalHeight;
+
+                    scrollCount += 1;
+                }
+
+                playAnimation();
+            });
+		}
+
+        function checkDevice() {
+            screen.width = document.body.clientWidth;
+            screen.height = window.innerHeight;
+
+            screen.ratio = screen.width / screen.height;
+
+            if (screen.ratio > 1 && screen.width > 750) {
+                screen.type = "desktop";
+            } else {
+                screen.type = "mobile";
+            }
+        }
+
+        function lazyLoad() {
+
+            const imgs = ['tripod', 'smartMount'];
+
+            imgs.forEach(cur => {
+
+                canvasImgs[cur] = imageUrl[cur][screen.type].map(img => {
+                    let imgElem = new Image();
+                    imgElem.src = img;
+                    return imgElem;
+                })
+            });
+
+        }
+
+
+        function playAnimation() {
+            const contObj = animationValues.objs;
+            const taretEl = contObj.cont.targetEl;
+            const contValues = animationValues.values;
+            const contKeys = animationValues.keys;
+
+            const scrollHeight = contObj.cont.totalHeight;
+            const startPoint = contObj.cont.start;
+            const endPoint = contObj.cont.end;
+
+            let yOffset = window.pageYOffset;
+            const currentYOffset = yOffset - startPoint;
+            const scrollRatio = currentYOffset / scrollHeight;
+
+            let type = null;
+            let values = {};
+
+
+            function circleAnimation(values, context, canvas) {
+
+                const { backgroundImage,
+                    productImage,
+                    backgroundColor,
+                    circleValue,
+                    transformValue
+                } = values;
+
+                // clear prev canvas
+                context.save();
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // draw background image
+                context.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height, 0, 0, canvas.width, canvas.height);
+                    
+                // draw circle
+                context.beginPath();
+                context.arc(canvas.width / 2, canvas.height / 2, 100 * circleValue, 0, 2 * Math.PI);
+                context.fillStyle = backgroundColor;
+                context.fill();
+
+                // draw image
+                context.drawImage(productImage, 0, 0, productImage.width, productImage.height, transformValue, transformValue, canvas.width, canvas.height);
+            }
+
+            function yLayerAnimation(values, context, canvas) {
+
+                const { backgroundImage,
+                    topProductImage,
+                    bottomProductImage,
+                    backgroundColor,
+                    blendHeight,
+                    prevTransformValue,
+                    transformValue,
+                    transformType
+                } = values;
+
+                // clear prev canvas
+                context.save();
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // fill back color
+                context.fillStyle = backgroundColor;
+                context.fillRect(0, 0, canvas.width, canvas.height);
+
+                const drawImageObj = {
+                    topBlended: [],
+                    bottomBlended01: [],
+                    bottomBlended02: []
+                }
+
+                if (transformType == "firstType") {
+                    drawImageObj.topBlended = [topProductImage, 0, 0, topProductImage.width, topProductImage.height, prevTransformValue, prevTransformValue, canvas.width, canvas.height];
+                    drawImageObj.bottomBlended01 = [backgroundImage, 0, backgroundImage.height * (1 - blendHeight), backgroundImage.width, backgroundImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                    drawImageObj.bottomBlended02 = [bottomProductImage, 0, bottomProductImage.height * (1 - blendHeight), bottomProductImage.width, bottomProductImage.height * blendHeight, 0 + canvas.width * (1 - transformValue) / 2, canvas.height * (1 - blendHeight), canvas.width * transformValue, canvas.height * blendHeight * transformValue];
+                } else if (transformType == "secondType") {
+                    drawImageObj.topBlended = [topProductImage, 0, 0, topProductImage.width, topProductImage.height, canvas.width * (1 - prevTransformValue) / 2, 0, canvas.width * prevTransformValue, canvas.height * prevTransformValue];
+                    drawImageObj.bottomBlended01 = [backgroundImage, 0, backgroundImage.height * (1 - blendHeight), backgroundImage.width, backgroundImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                    drawImageObj.bottomBlended02 = [bottomProductImage, 0, bottomProductImage.height * (1 - blendHeight), bottomProductImage.width, bottomProductImage.height * blendHeight, 0 - transformValue, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                } else if (transformType == "thirdType") {
+                    drawImageObj.topBlended = [topProductImage, 0, 0, topProductImage.width, topProductImage.height, -prevTransformValue, 0, canvas.width, canvas.height];
+                    drawImageObj.bottomBlended01 = [backgroundImage, 0, backgroundImage.height * (1 - blendHeight), backgroundImage.width, backgroundImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                    drawImageObj.bottomBlended02 = [bottomProductImage, 0, bottomProductImage.height * (1 - blendHeight), bottomProductImage.width, bottomProductImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                }
+
+
+
+                // draw top blended image
+                context.drawImage(
+                    drawImageObj.topBlended[0],
+                    drawImageObj.topBlended[1], drawImageObj.topBlended[2], drawImageObj.topBlended[3], drawImageObj.topBlended[4],
+                    drawImageObj.topBlended[5], drawImageObj.topBlended[6], drawImageObj.topBlended[7], drawImageObj.topBlended[8]
+                );
+
+                // put opacity to top blended image
+                context.fillStyle = `rgba(0, 0, 0, ${blendHeight})`;
+                context.fillRect(0, 0, canvas.width, canvas.height);
+
+                // draw bottom blended image
+                context.drawImage(
+                    drawImageObj.bottomBlended01[0],
+                    drawImageObj.bottomBlended01[1], drawImageObj.bottomBlended01[2], drawImageObj.bottomBlended01[3], drawImageObj.bottomBlended01[4],
+                    drawImageObj.bottomBlended01[5], drawImageObj.bottomBlended01[6], drawImageObj.bottomBlended01[7], drawImageObj.bottomBlended01[8]
+                );
+
+                context.drawImage(
+                    drawImageObj.bottomBlended02[0],
+                    drawImageObj.bottomBlended02[1], drawImageObj.bottomBlended02[2], drawImageObj.bottomBlended02[3], drawImageObj.bottomBlended02[4],
+                    drawImageObj.bottomBlended02[5], drawImageObj.bottomBlended02[6], drawImageObj.bottomBlended02[7], drawImageObj.bottomBlended02[8]
+                );
+
+            }
+
+
+            if (yOffset >= startPoint && yOffset <= endPoint) {
+
+                // taretEl.style.setProperty(contKeys.headTextTrans, calcValues(contValues["headTextTrans"], currentYOffset, scrollHeight) + "%");
+
+                // taretEl.style.setProperty(contKeys.textTrans01, calcValues(contValues["textTrans01"], currentYOffset, scrollHeight) + "px");
+                // taretEl.style.setProperty(contKeys.textOpacity01, calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight));
+
+
+                if (scrollRatio <= (0.33 / 2) * (6/7)) {
+                    // animation 1
+
+                    type = "circleAnimation";
+
+                    values = {
+                        backgroundImage: canvasImgs.tripod[1],
+                        productImage: canvasImgs.tripod[2],
+                        backgroundColor: "#00A9C3",
+                        circleValue: calcValues(contValues["circleScale"], currentYOffset, scrollHeight),
+                        transformValue: calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight)
+                    };
+
+                    contObj.tripod.headTextEl.style.transform = `translate3d(0, ${calcValues(contValues["headTextTrans"], currentYOffset, scrollHeight)}px, 0)`;
+                    contObj.tripod.firstTextEl.style.transform = `translate3d(0, ${calcValues(contValues["textTrans01"], currentYOffset, scrollHeight)}px, 0)`;
+                    contObj.tripod.firstTextEl.style.opacity = calcValues(contValues["textOpacity01_in"], currentYOffset, scrollHeight);
+
+                } else if (scrollRatio <= (0.66 / 2) * (6/7)) {
+                    // animation 2
+                    
+                    type = "yLayerAnimation";
+
+                    values = {
+                        backgroundImage: canvasImgs.tripod[0],
+                        topProductImage: canvasImgs.tripod[2],
+                        bottomProductImage: canvasImgs.tripod[3],
+                        backgroundColor: "#00A9C3",
+                        blendHeight: calcValues(contValues["chargingLayerY02"], currentYOffset, scrollHeight),
+                        prevTransformValue: calcValues(contValues["productImageTrans01"], currentYOffset, scrollHeight),
+                        transformValue: calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight),
+                        transformType: "firstType"
+                    }
+
+                    contObj.tripod.firstTextEl.style.transform = `translate3d(0, ${calcValues(contValues["textTrans01"], currentYOffset, scrollHeight)}px, 0)`;
+                    contObj.tripod.firstTextEl.style.opacity = calcValues(contValues["textOpacity01_out"], currentYOffset, scrollHeight);
+
+                    contObj.tripod.secondTextEl.style.transform = `translate3d(0, ${calcValues(contValues["textTrans02"], currentYOffset, scrollHeight)}px, 0)`;
+                    contObj.tripod.secondTextEl.style.opacity = calcValues(contValues["textOpacity02_in"], currentYOffset, scrollHeight);
+
+                } else if (scrollRatio <= (1 / 2) * (6/7)) {
+                    // animation 3
+
+
+                    type = "yLayerAnimation";
+
+                    values = {
+                        backgroundImage: canvasImgs.tripod[0],
+                        topProductImage: canvasImgs.tripod[3],
+                        bottomProductImage: canvasImgs.tripod[4],
+                        backgroundColor: "#00A9C3",
+                        blendHeight: calcValues(contValues["chargingLayerY03"], currentYOffset, scrollHeight),
+                        prevTransformValue: calcValues(contValues["productImageScale02"], currentYOffset, scrollHeight),
+                        transformValue: calcValues(contValues["productImageTrans03"], currentYOffset, scrollHeight),
+                        transformType: "secondType"
+                    }
+
+                    contObj.tripod.secondTextEl.style.opacity = calcValues(contValues["textOpacity02_out"], currentYOffset, scrollHeight);
+
+                    contObj.tripod.thirdTextEl.style.transform = `translateY(${calcValues(contValues["textTrans03"], currentYOffset, scrollHeight)}%)`;
+                    contObj.tripod.thirdTextEl.style.opacity = calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight);
+                } else if (scrollRatio <= 4 / 7) {
+                    // animation 4 (tripod ->> smartMount)
+
+                    type = "yLayerAnimation";
+
+                    values = {
+                        backgroundImage: canvasImgs.smartMount[1],
+                        topProductImage: canvasImgs.tripod[4],
+                        bottomProductImage: canvasImgs.smartMount[2],
+                        backgroundColor: "#00A9C3",
+                        blendHeight: calcValues(contValues["SM_chargingLayerY01"], currentYOffset, scrollHeight),
+                        prevTransformValue: calcValues(contValues["productImageTrans03"], currentYOffset, scrollHeight),
+                        transformType: "thirdType"
+                    }
+
+                    contObj.tripod.thirdTextEl.style.opacity = calcValues(contValues["textOpacity03_out"], currentYOffset, scrollHeight);
+                    contObj.smartMount.headTextEl.style.opacity = calcValues(contValues["SM_headTextOpacity_in"], currentYOffset, scrollHeight);
+
+                    // contObj.cont.thirdEl.style.transform = `translateY(${calcValues(contValues["textTrans03"], currentYOffset, scrollHeight)}%)`;
+                    // contObj.cont.thirdEl.style.opacity = calcValues(contValues["textOpacity03_in"], currentYOffset, scrollHeight);
+
+                } else if (scrollRatio <= (0.33 / 2) * (6/7) + (4 / 7)) {
+                    // animation 5: smartMount
+
+                    type = "circleAnimation";
+
+                    values = {
+                        backgroundImage: canvasImgs.smartMount[1],
+                        productImage: canvasImgs.smartMount[2],
+                        backgroundColor: "#F3C130",
+                        circleValue: calcValues(contValues["SM_circleScale"], currentYOffset, scrollHeight),
+                        transformValue: calcValues(contValues["SM_productImageTrans01"], currentYOffset, scrollHeight)
+                    };
+
+                    contObj.smartMount.headTextEl.style.transform = `translate3d(0, ${calcValues(contValues["SM_headTextTrans"], currentYOffset, scrollHeight)}px, 0)`;
+                    contObj.smartMount.firstTextEl.style.transform = `translate3d(0, ${calcValues(contValues["SM_textTrans01"], currentYOffset, scrollHeight)}px, 0)`;
+                    contObj.smartMount.firstTextEl.style.opacity = calcValues(contValues["SM_textOpacity01_in"], currentYOffset, scrollHeight);
+
+                } else if (scrollRatio <= (0.66 / 2) * (6/7) + (4 / 7)) {
+                    // animation 6: smmartMount01
+
+                    type = "yLayerAnimation";
+
+                    values = {
+                        backgroundImage: canvasImgs.smartMount[0],
+                        topProductImage: canvasImgs.smartMount[2],
+                        bottomProductImage: canvasImgs.smartMount[3],
+                        backgroundColor: "#F3C130",
+                        blendHeight: calcValues(contValues["SM_chargingLayerY02"], currentYOffset, scrollHeight),
+                        prevTransformValue: calcValues(contValues["SM_productImageTrans01"], currentYOffset, scrollHeight),
+                        transformValue: calcValues(contValues["SM_productImageScale02"], currentYOffset, scrollHeight),
+                        transformType: "firstType"
+                    }
+
+                    contObj.smartMount.firstTextEl.style.transform = `translate3d(0, ${calcValues(contValues["SM_textTrans01"], currentYOffset, scrollHeight)}px, 0)`;
+                    contObj.smartMount.firstTextEl.style.opacity = calcValues(contValues["SM_textOpacity01_out"], currentYOffset, scrollHeight);
+
+                    contObj.smartMount.secondTextEl.style.transform = `translate3d(0, ${calcValues(contValues["SM_textTrans02"], currentYOffset, scrollHeight)}px, 0)`;
+                    contObj.smartMount.secondTextEl.style.opacity = calcValues(contValues["SM_textOpacity02_in"], currentYOffset, scrollHeight);
+
+                } else if (scrollRatio <= (1 / 2) * (6/7) + (4 / 7)) {
+                    // animation 7: smmartMount01
+
+                    type = "yLayerAnimation";
+
+                    values = {
+                        backgroundImage: canvasImgs.smartMount[0],
+                        topProductImage: canvasImgs.smartMount[3],
+                        bottomProductImage: canvasImgs.smartMount[4],
+                        backgroundColor: "#F3C130",
+                        blendHeight: calcValues(contValues["SM_chargingLayerY03"], currentYOffset, scrollHeight),
+                        prevTransformValue: calcValues(contValues["SM_productImageScale02"], currentYOffset, scrollHeight),
+                        transformValue: calcValues(contValues["SM_productImageTrans03"], currentYOffset, scrollHeight),
+                        transformType: "secondType"
+                    }
+
+                    contObj.smartMount.secondTextEl.style.opacity = calcValues(contValues["SM_textOpacity02_out"], currentYOffset, scrollHeight);
+
+                    contObj.smartMount.thirdTextEl.style.transform = `translate3d(0, ${calcValues(contValues["SM_textTrans03"], currentYOffset, scrollHeight)}px, 0)`;
+                    contObj.smartMount.thirdTextEl.style.opacity = calcValues(contValues["SM_textOpacity03_in"], currentYOffset, scrollHeight);
+                }
+
+                if (type == "circleAnimation") {
+                    circleAnimation(values, context, canvas);
+                } else if (type == "yLayerAnimation") {
+                    yLayerAnimation(values, context, canvas);
+                }
+
+                // console.log('this is scrollRatio', scrollRatio, window.pageYOffset)
+
+
+
+            } else if (yOffset <= startPoint)  {
+                console.log('start');
+            } else if (yOffset >= endPoint) {
+                console.log('end');
+            }
+
+        }
+
+
+
+
+
+		window.addEventListener('load', init);
+
+        checkDevice();
+        lazyLoad();
+	</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

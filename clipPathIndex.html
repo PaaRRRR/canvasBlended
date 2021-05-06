@@ -29,17 +29,13 @@ div.sticky {
     overflow: hidden;
 }
 
-img {
+.acc-section-imageBox img {
     height: 100vh;
     width: auto;
     vertical-align: bottom;
     position: relative;
     max-width: 100%;
     object-fit: cover;
-}
-
-.relative {
-    position: relative;
 }
 
 .acc-section-circle {
@@ -972,6 +968,8 @@ img {
             taretEl.style.setProperty(contKeys.SM_textOpacity03, "1");
         
         }
+
+        console.log('this is scrollRatio', scrollRatio, window.pageYOffset)
     }
 
     window.addEventListener("load", function init() {
