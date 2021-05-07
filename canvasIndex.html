@@ -171,16 +171,22 @@
     </style>
 </head>
 <body>
+    <!-- new Accessorries animation -->
     <div>Hello world!</div>
     <div>If you want to scroll, sticky world!</div>
     <div>Bye world!</div>
-    <div class="acc-section-cont" style="width: 100%; height: 800vh;">
-        <div class="acc-section-sticky-cont">
+
+      <div class="lazy_action acc-section-cont" style="width: 100%; height: 800vh;">
+        <div class="acc-section-sticky-cont sticky">
+
             <div class="headText absoluteText headText-tripod">
-                <div class="headText-category">ACCESSORIES</div>
-                <div class="headText-name">Tripod</div>
-                <div class="headText-lrm">Learn more ></div>
+                <div class="headText-category typography-s-st margin-m-b">ACCESSORIES</div>
+                <div class="headText-name typography-s-t margin-m-b">Tripod</div>
+                <div class="headText-lrm landing-block-items-LearnMore-btn">
+                  <a aria-label="learn more about tripod" href="/products/tripod" data-i18n="new-learn_more">Learn more</a><i class="newLP-right-arrow"></i>
+                </div>
             </div>
+
 
             <div class="firstText absoluteText firstText-tripod">
                 Take your shots to a new level
@@ -195,9 +201,11 @@
             </div>
 
             <div class="headText absoluteText headText-smartMount">
-                <div class="headText-category">ACCESSORIES</div>
-                <div class="headText-name">Smart Mount</div>
-                <div class="headText-lrm">Learn more ></div>
+                <div class="headText-category typography-s-st margin-m-b">ACCESSORIES</div>
+                <div class="headText-name typography-s-t margin-m-b">Smart Mount</div>
+                <div class="headText-lrm landing-block-items-LearnMore-btn">
+                  <a aria-label="learn more about smart mount" href="/products/smart-mount" data-i18n="new-learn_more">Learn more</a><i class="newLP-right-arrow"></i>
+                </div>
             </div>
 
             <div class="firstText absoluteText firstText-smartMount">
@@ -216,8 +224,8 @@
             <canvas
                 id="compareSlider-canvas"
                 class="sample-canvas"
-                width="1920"
-                height="1080"
+                width="0"
+                height="0"
             >
             Your browser does not support the canvas element.
             </canvas>
@@ -227,13 +235,23 @@
     <div style="background: wheat; width: 100%; height: 150vh;">
         hello world!
     </div>
-    
+
 
 	<script>
 		const canvas = document.querySelector('.sample-canvas');
 		const context = canvas.getContext('2d');
 		const videoImages = [];
         const imageUrl = {
+            // tripod: {
+            //     // background, 01, 02, 03
+            //     desktop: ['https://cdn.shopify.com/s/files/1/2065/8833/files/greenBack-desktop.jpg?v=1619764758', 'https://cdn.shopify.com/s/files/1/2065/8833/files/tripod_backg-desktop.jpg?v=1619764594', 'https://cdn.shopify.com/s/files/1/2065/8833/files/tripod01-desktop.png?v=1619764594', 'https://cdn.shopify.com/s/files/1/2065/8833/files/tripod02-desktop.png?v=1619764594', 'https://cdn.shopify.com/s/files/1/2065/8833/files/tripod03-desktop.png?v=1619764594'], 
+            //     mobile: ['https://cdn.shopify.com/s/files/1/2065/8833/files/greenBack-mobile.jpg?v=1619764758', 'https://cdn.shopify.com/s/files/1/2065/8833/files/tripod_backg-mobile.jpg?v=1619764594', 'https://cdn.shopify.com/s/files/1/2065/8833/files/tripod01-mobile.png?v=1619764595', 'https://cdn.shopify.com/s/files/1/2065/8833/files/tripod02-mobile.png?v=1619764594', 'https://cdn.shopify.com/s/files/1/2065/8833/files/tripod03-mobile.png?v=1619764594']
+            // },
+            // smartMount: {
+            //     desktop: ['https://cdn.shopify.com/s/files/1/2065/8833/files/yellowBack-desktop.jpg?v=1619764759', 'https://cdn.shopify.com/s/files/1/2065/8833/files/SM_backg-desktop.jpg?v=1619764809', 'https://cdn.shopify.com/s/files/1/2065/8833/files/smartMount01-desktop.png?v=1619764809', 'https://cdn.shopify.com/s/files/1/2065/8833/files/smartMount02-desktop.png?v=1619764809', 'https://cdn.shopify.com/s/files/1/2065/8833/files/smartMount03-desktop_ba5c4146-9862-407c-a6da-e781a37a3301.png?v=1620111478'],
+            //     mobile: ['https://cdn.shopify.com/s/files/1/2065/8833/files/yellowBack-mobile.jpg?v=1619764758', 'https://cdn.shopify.com/s/files/1/2065/8833/files/SM_backg-mobile.jpg?v=1619764809', 'https://cdn.shopify.com/s/files/1/2065/8833/files/smartMount01-mobile.png?v=1619764809', 'https://cdn.shopify.com/s/files/1/2065/8833/files/smartMount02-mobile.png?v=1619764809', 'https://cdn.shopify.com/s/files/1/2065/8833/files/smartMount03-mobile_a97361f9-8909-46c7-9f90-52113e185631.png?v=1620111478']
+            // }
+
             tripod: {
                 // background, 01, 02, 03
                 desktop: ['./assets/img/greenBack-desktop.jpg', './assets/img/tripod/tripod_backg-desktop.jpg', './assets/img/tripod/tripod01-desktop.png', './assets/img/tripod/tripod02-desktop.png', './assets/img/tripod/tripod03-desktop.png'], 
@@ -266,11 +284,14 @@
         };
 
         let canvasImgs = {};
+        let canvasImgsArr = [];
 
         var currentDevice = "mobile";
         let canvasWidth = 0, canvasHeight = 0;
 
         let scrollCount = 0;
+
+        let canvasObjectFitImageRatio = 0;
 
         let animationValues = {
             objs: {
@@ -306,9 +327,9 @@
             },
             values: {
 
-                circleScale: [0, 5, { start: 0, end: (0.33 / 2) * (6/7) }, "circleScale"],
+                circleScale: [0, 1, { start: 0, end: (0.33 / 2) * (6/7) }, "circleScale"],
                 productImageTrans01: [0, -12, { start: 0, end: (0.12 / 2) * (6/7) }, "productImageTrans01"],
-                headTextTrans: [50, -300, { start: (0.12 / 2) * (6/7), end: (0.33 / 2) * (6/7) }, "headTextTrans"],
+                headTextTrans: [10, -300, { start: (0.12 / 2) * (6/7), end: (0.33 / 2) * (6/7) }, "headTextTrans"],
 
                 
                 productImageScale02: [1, 0.9, { start: (0.45 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "productImageScale02"],
@@ -320,7 +341,7 @@
                 SM_chargingLayerY01: [0, 1, { start: 3 / 7, end: 4 / 7 }, "SM_chargingLayerY01"],
 
 
-                SM_circleScale: [0, 5, { start: (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_circleScale"],
+                SM_circleScale: [0, 1, { start: (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_circleScale"],
                 SM_productImageTrans01: [0, -12, { start: (4 / 7), end: (0.12 / 2) * (6/7) + (4 / 7) }, "SM_productImageTrans01"],
 
 
@@ -340,13 +361,13 @@
                 textOpacity01_out: [1, 0, { start: (0.33 / 2) * (6/7), end: (0.54 / 2) * (6/7) }, "textOpacity01"],
 
                 
-                textTrans02: [90, 60, { start: (0.54 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "textTrans02"],
-                textOpacity02_in: [0, 1, { start: (0.54 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "textOpacity02"],
+                textTrans02: [70, 40, { start: (0.55 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "textTrans02"],
+                textOpacity02_in: [0, 1, { start: (0.55 / 2) * (6/7), end: (0.58 / 2) * (6/7) }, "textOpacity02"],
                 textOpacity02_out: [1, 0, { start: (0.66 / 2) * (6/7), end: (0.87 / 2) * (6/7) }, "textOpacity02"],
 
                 
-                textTrans03: [-50, -70, { start: (0.84 / 2) * (6/7), end: (0.92 / 2) * (6/7) }, "textTrans03"],
-                textOpacity03_in: [0, 1, { start: (0.84 / 2) * (6/7), end: (0.88 / 2) * (6/7) }, "textOpacity03"],
+                textTrans03: [-30, -40, { start: (0.88 / 2) * (6/7), end: (0.92 / 2) * (6/7) }, "textTrans03"],
+                textOpacity03_in: [0, 1, { start: (0.88 / 2) * (6/7), end: (0.92 / 2) * (6/7) }, "textOpacity03"],
                 textOpacity03_out: [1, 0, { start: (1 / 2) * (6/7), end: (3.5 / 7) }, "textOpacity02"],
 
                 chargingLayerY01: [0, 0, { start: 0, end: 0 }, "chargingLayerY01"],
@@ -354,18 +375,18 @@
 
                 // smart mount
 
-                SM_headTextTrans: [50, -300, { start: (0.12 / 2) * (6/7) + (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_headTextTrans"],
+                SM_headTextTrans: [10, -300, { start: (0.12 / 2) * (6/7) + (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_headTextTrans"],
                 
                 SM_textTrans01: [100, 70, { start: (0.15 / 2) * (6/7) + (4 / 7), end: (0.33 / 2) * (6/7) + (4 / 7) }, "SM_textTrans01"],
                 SM_textOpacity01_in: [0, 1, { start: (0.15 / 2) * (6/7) + (4 / 7), end: (0.27 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity01"],
                 SM_textOpacity01_out: [1, 0, { start: (0.33 / 2) * (6/7) + (4 / 7), end: (0.54 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity01"],
                 
-                SM_textTrans02: [90, 60, { start: (0.54 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_textTrans02"],
-                SM_textOpacity02_in: [0, 1, { start: (0.54 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity02"],
+                SM_textTrans02: [70, 40, { start: (0.55 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_textTrans02"],
+                SM_textOpacity02_in: [0, 1, { start: (0.55 / 2) * (6/7) + (4 / 7), end: (0.58 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity02"],
                 SM_textOpacity02_out: [1, 0, { start: (0.66 / 2) * (6/7) + (4 / 7), end: (0.87 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity02"],
                 
-                SM_textTrans03: [90, 60, { start: (0.88 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_textTrans03"],
-                SM_textOpacity03_in: [0, 1, { start: (0.88 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity03"],
+                SM_textTrans03: [70, 40, { start: (0.89 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_textTrans03"],
+                SM_textOpacity03_in: [0, 1, { start: (0.89 / 2) * (6/7) + (4 / 7), end: (0.92 / 2) * (6/7) + (4 / 7) }, "SM_textOpacity03"],
                 SM_textOpacity03_out: [1, 0, { start: (1 / 2) * (6/7) + (4 / 7), end: (3.5 / 7) + (4 / 7) }, "SM_textOpacity03"],
 
             }
@@ -406,15 +427,26 @@
             canvas.width = curFullWidth;
             canvas.height = curFullWidth * canvasRatio[currentDevice].WHRatio;
 
+            // canvas.width = screen.width;
+            // canvas.height = screen.height;
+
             canvasWidth = canvas.width;
             canvasHeight = canvas.height;
+
+            // canvasObjectFitImageRatio = getCanvasObjectFitImageRatio(canvas, canvasImgsArr);
 
             
             context.drawImage(canvasImgs.tripod[1], 0, 0, canvasWidth, canvasHeight);
             context.drawImage(canvasImgs.tripod[2], 0, 0, canvasWidth, canvasHeight);
 
+            // context.drawImage(
+            //   canvasImgs.tripod[2], 
+            //   0, 0, canvasImgs.tripod[2].width, canvasImgs.tripod[2].height, 
+            //   (canvas.width - canvasImgs.tripod[2].width * canvasObjectFitImageRatio) / 2, (canvas.height - canvasImgs.tripod[2].height * canvasObjectFitImageRatio) / 2, canvasImgs.tripod[2].width * canvasObjectFitImageRatio, canvasImgs.tripod[2].height * canvasObjectFitImageRatio
+            // );
+
             animationValues.objs.cont.start = animationValues.objs.cont.targetEl.offsetTop;
-            
+
             window.addEventListener("scroll", function(e) {
 
                 if (scrollCount < 10) {
@@ -456,8 +488,35 @@
                     imgElem.src = img;
                     return imgElem;
                 })
+
+                canvasImgsArr = [...canvasImgsArr, ...canvasImgs[cur]];
             });
 
+        }
+
+        function getCanvasObjectFitImageRatio(canvas, imgs) {
+          const canvasWidth = canvas.width;
+          const canvasHeight = canvas.height;
+
+          if (imgs && imgs.length > 0) {
+            const imgWidth = imgs[3].width;
+            const imgHeight = imgs[3].height;
+
+            const r = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
+
+            // const calcedImgWidth = imgWidth * r;
+            // const calcedImgHeight = imgHeight * r;
+
+
+            // imgs.forEach(img => {
+            //   img.width = img.width * r;
+            //   img.height = img.height * r;
+            // });
+
+            return r;
+          }
+          
+          
         }
 
 
@@ -497,12 +556,22 @@
                     
                 // draw circle
                 context.beginPath();
-                context.arc(canvas.width / 2, canvas.height / 2, 100 * circleValue, 0, 2 * Math.PI);
+                let biggerOne = canvas.height;
+                if (canvas.width > canvas.height) {
+                  biggerOne = canvas.width; 
+                }
+                context.arc(canvas.width / 2, canvas.height / 2, biggerOne * circleValue, 0, 2 * Math.PI);
                 context.fillStyle = backgroundColor;
                 context.fill();
 
                 // draw image
                 context.drawImage(productImage, 0, 0, productImage.width, productImage.height, transformValue, transformValue, canvas.width, canvas.height);
+                
+                // context.drawImage(
+                //   productImage, 
+                //   0, 0, productImage.width, productImage.height, 
+                //   (canvas.width - productImage.width * canvasObjectFitImageRatio) / 2 + transformValue, (canvas.height - productImage.height * canvasObjectFitImageRatio) / 2 + transformValue, productImage.width * canvasObjectFitImageRatio, productImage.height * canvasObjectFitImageRatio
+                // );
             }
 
             function yLayerAnimation(values, context, canvas) {
@@ -733,13 +802,16 @@
                 // console.log('this is scrollRatio', scrollRatio, window.pageYOffset)
 
 
+            } else {
 
-            } else if (yOffset <= startPoint)  {
-                console.log('start');
-            } else if (yOffset >= endPoint) {
-                console.log('end');
+                if (yOffset <= startPoint)  {
+                    // console.log('start');
+                } else if (yOffset >= endPoint) {
+                    // console.log('end');
+                }
+
+
             }
-
         }
 
 
