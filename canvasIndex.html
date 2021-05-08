@@ -876,8 +876,36 @@
 
                 if (yOffset <= startPoint)  {
                     // console.log('start');
+
+                    context.drawImage(canvasImgs.tripod[1], 0, 0, canvasWidth, canvasHeight);
+                    // context.drawImage(canvasImgs.tripod[2], 0, 0, canvasWidth, canvasHeight);
+
+                    context.drawImage(
+                        canvasImgs.tripod[2], 
+                        0, 0, canvasImgs.tripod[2].width, canvasImgs.tripod[2].height, 
+                        (canvas.width - canvasImgs.tripod[2].width * canvasObjectFitImageRatio) / 2, (canvas.height - canvasImgs.tripod[2].height * canvasObjectFitImageRatio) / 2, canvasImgs.tripod[2].width * canvasObjectFitImageRatio, canvasImgs.tripod[2].height * canvasObjectFitImageRatio
+                    );
+
+
+                    contObj.tripod.headTextEl.style.transform = `translate3d(0, 10px, 0)`;
+                    contObj.tripod.firstTextEl.style.transform = `translate3d(0, 100px, 0)`;
+                    contObj.tripod.firstTextEl.style.opacity = 0;
+
                 } else if (yOffset >= endPoint) {
                     // console.log('end');
+
+                    context.drawImage(canvasImgs.smartMount[0], 0, 0, canvasWidth, canvasHeight);
+
+                    context.drawImage(
+                        canvasImgs.smartMount[4], 
+                        0, 0, canvasImgs.smartMount[4].width, canvasImgs.smartMount[4].height, 
+                        (canvas.width - canvasImgs.smartMount[4].width * canvasObjectFitImageRatio) / 2, (canvas.height - canvasImgs.smartMount[4].height * canvasObjectFitImageRatio) / 2, canvasImgs.smartMount[4].width * canvasObjectFitImageRatio, canvasImgs.smartMount[4].height * canvasObjectFitImageRatio
+                    );
+
+                    contObj.smartMount.secondTextEl.style.opacity = 0;
+
+                    contObj.smartMount.thirdTextEl.style.transform = "translate3d(0, 40px, 0)";
+                    contObj.smartMount.thirdTextEl.style.opacity = 1;
                 }
 
 
