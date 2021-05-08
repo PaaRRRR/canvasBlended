@@ -424,26 +424,26 @@
 
             var curFullWidth = document.body.clientWidth;
 
-            canvas.width = curFullWidth;
-            canvas.height = curFullWidth * canvasRatio[currentDevice].WHRatio;
+            // canvas.width = curFullWidth;
+            // canvas.height = curFullWidth * canvasRatio[currentDevice].WHRatio;
 
-            // canvas.width = screen.width;
-            // canvas.height = screen.height;
+            canvas.width = screen.width;
+            canvas.height = screen.height;
 
             canvasWidth = canvas.width;
             canvasHeight = canvas.height;
 
-            // canvasObjectFitImageRatio = getCanvasObjectFitImageRatio(canvas, canvasImgsArr);
+            canvasObjectFitImageRatio = getCanvasObjectFitImageRatio(canvas, canvasImgsArr);
 
             
             context.drawImage(canvasImgs.tripod[1], 0, 0, canvasWidth, canvasHeight);
-            context.drawImage(canvasImgs.tripod[2], 0, 0, canvasWidth, canvasHeight);
+            // context.drawImage(canvasImgs.tripod[2], 0, 0, canvasWidth, canvasHeight);
 
-            // context.drawImage(
-            //   canvasImgs.tripod[2], 
-            //   0, 0, canvasImgs.tripod[2].width, canvasImgs.tripod[2].height, 
-            //   (canvas.width - canvasImgs.tripod[2].width * canvasObjectFitImageRatio) / 2, (canvas.height - canvasImgs.tripod[2].height * canvasObjectFitImageRatio) / 2, canvasImgs.tripod[2].width * canvasObjectFitImageRatio, canvasImgs.tripod[2].height * canvasObjectFitImageRatio
-            // );
+            context.drawImage(
+              canvasImgs.tripod[2], 
+              0, 0, canvasImgs.tripod[2].width, canvasImgs.tripod[2].height, 
+              (canvas.width - canvasImgs.tripod[2].width * canvasObjectFitImageRatio) / 2, (canvas.height - canvasImgs.tripod[2].height * canvasObjectFitImageRatio) / 2, canvasImgs.tripod[2].width * canvasObjectFitImageRatio, canvasImgs.tripod[2].height * canvasObjectFitImageRatio
+            );
 
             animationValues.objs.cont.start = animationValues.objs.cont.targetEl.offsetTop;
 
@@ -504,19 +504,8 @@
 
             const r = Math.min(canvasWidth / imgWidth, canvasHeight / imgHeight);
 
-            // const calcedImgWidth = imgWidth * r;
-            // const calcedImgHeight = imgHeight * r;
-
-
-            // imgs.forEach(img => {
-            //   img.width = img.width * r;
-            //   img.height = img.height * r;
-            // });
-
             return r;
           }
-          
-          
         }
 
 
@@ -547,6 +536,10 @@
                     transformValue
                 } = values;
 
+                // resizing img size to fit canvas
+                const productImageWidth = productImage.width * canvasObjectFitImageRatio;
+                const productImageHeight = productImage.height * canvasObjectFitImageRatio;
+
                 // clear prev canvas
                 context.save();
                 context.clearRect(0, 0, canvas.width, canvas.height);
@@ -565,13 +558,13 @@
                 context.fill();
 
                 // draw image
-                context.drawImage(productImage, 0, 0, productImage.width, productImage.height, transformValue, transformValue, canvas.width, canvas.height);
+                // context.drawImage(productImage, 0, 0, productImage.width, productImage.height, transformValue, transformValue, canvas.width, canvas.height);
                 
-                // context.drawImage(
-                //   productImage, 
-                //   0, 0, productImage.width, productImage.height, 
-                //   (canvas.width - productImage.width * canvasObjectFitImageRatio) / 2 + transformValue, (canvas.height - productImage.height * canvasObjectFitImageRatio) / 2 + transformValue, productImage.width * canvasObjectFitImageRatio, productImage.height * canvasObjectFitImageRatio
-                // );
+                context.drawImage(
+                  productImage, 
+                  0, 0, productImage.width, productImage.height, 
+                  (canvas.width - productImageWidth) / 2 + transformValue, (canvas.height - productImageHeight) / 2 + transformValue, productImageWidth, productImageHeight
+                );
             }
 
             function yLayerAnimation(values, context, canvas) {
@@ -585,6 +578,12 @@
                     transformValue,
                     transformType
                 } = values;
+
+                // resizing img size to fit canvas
+                const topProductImageWidth = topProductImage.width * canvasObjectFitImageRatio;
+                const topProductImageHeight = topProductImage.height * canvasObjectFitImageRatio;
+                const bottomProductImageWidth = bottomProductImage.width * canvasObjectFitImageRatio;
+                const bottomProductImageHeight = bottomProductImage.height * canvasObjectFitImageRatio;
 
                 // clear prev canvas
                 context.save();
@@ -600,18 +599,87 @@
                     bottomBlended02: []
                 }
 
+                // if (transformType == "firstType") {
+                //     drawImageObj.topBlended = [topProductImage, 0, 0, topProductImage.width, topProductImage.height, prevTransformValue, prevTransformValue, canvas.width, canvas.height];
+                //     drawImageObj.bottomBlended01 = [backgroundImage, 0, backgroundImage.height * (1 - blendHeight), backgroundImage.width, backgroundImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                //     drawImageObj.bottomBlended02 = [bottomProductImage, 0, bottomProductImage.height * (1 - blendHeight), bottomProductImage.width, bottomProductImage.height * blendHeight, 0 + canvas.width * (1 - transformValue) / 2, canvas.height * (1 - blendHeight), canvas.width * transformValue, canvas.height * blendHeight * transformValue];
+                // } else if (transformType == "secondType") {
+                //     drawImageObj.topBlended = [topProductImage, 0, 0, topProductImage.width, topProductImage.height, canvas.width * (1 - prevTransformValue) / 2, 0, canvas.width * prevTransformValue, canvas.height * prevTransformValue];
+                //     drawImageObj.bottomBlended01 = [backgroundImage, 0, backgroundImage.height * (1 - blendHeight), backgroundImage.width, backgroundImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                //     drawImageObj.bottomBlended02 = [bottomProductImage, 0, bottomProductImage.height * (1 - blendHeight), bottomProductImage.width, bottomProductImage.height * blendHeight, 0 - transformValue, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                // } else if (transformType == "thirdType") {
+                //     drawImageObj.topBlended = [topProductImage, 0, 0, topProductImage.width, topProductImage.height, -prevTransformValue, 0, canvas.width, canvas.height];
+                //     drawImageObj.bottomBlended01 = [backgroundImage, 0, backgroundImage.height * (1 - blendHeight), backgroundImage.width, backgroundImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                //     drawImageObj.bottomBlended02 = [bottomProductImage, 0, bottomProductImage.height * (1 - blendHeight), bottomProductImage.width, bottomProductImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                // }
+
+
                 if (transformType == "firstType") {
-                    drawImageObj.topBlended = [topProductImage, 0, 0, topProductImage.width, topProductImage.height, prevTransformValue, prevTransformValue, canvas.width, canvas.height];
+                    drawImageObj.topBlended = [
+                        topProductImage, 
+                        0, 0, 
+                        topProductImage.width, topProductImage.height, 
+                        (canvas.width - topProductImageWidth) / 2 + prevTransformValue, (canvas.height - topProductImageHeight) / 2 + prevTransformValue, 
+                        topProductImageWidth, topProductImageHeight
+                    ];
                     drawImageObj.bottomBlended01 = [backgroundImage, 0, backgroundImage.height * (1 - blendHeight), backgroundImage.width, backgroundImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
-                    drawImageObj.bottomBlended02 = [bottomProductImage, 0, bottomProductImage.height * (1 - blendHeight), bottomProductImage.width, bottomProductImage.height * blendHeight, 0 + canvas.width * (1 - transformValue) / 2, canvas.height * (1 - blendHeight), canvas.width * transformValue, canvas.height * blendHeight * transformValue];
+
+
+                    const transformedImgTotalHeight = bottomProductImageHeight * transformValue;
+                    const blendedImgHeight = canvas.height * blendHeight - (canvas.height - transformedImgTotalHeight) / 2;
+
+                    let respImgRatios = 1, blendedImgPos = (canvas.height - transformedImgTotalHeight) / 2;
+                    if (blendedImgHeight <= transformedImgTotalHeight) {
+                        respImgRatios = blendedImgHeight / transformedImgTotalHeight;
+                        blendedImgPos = canvas.height * (1 - blendHeight);
+                    }
+
+                    drawImageObj.bottomBlended02 = [
+                        bottomProductImage,
+                        0, bottomProductImage.height * (1 - respImgRatios), 
+                        bottomProductImage.width, bottomProductImage.height * respImgRatios, 
+                        (canvas.width - bottomProductImageWidth * transformValue) / 2, blendedImgPos,
+                        bottomProductImageWidth * transformValue, bottomProductImageHeight * respImgRatios * transformValue
+                    ];
+
                 } else if (transformType == "secondType") {
-                    drawImageObj.topBlended = [topProductImage, 0, 0, topProductImage.width, topProductImage.height, canvas.width * (1 - prevTransformValue) / 2, 0, canvas.width * prevTransformValue, canvas.height * prevTransformValue];
+                    drawImageObj.topBlended = [
+                        topProductImage, 
+                        0, 0, 
+                        topProductImage.width, topProductImage.height, 
+                        (canvas.width - topProductImageWidth * prevTransformValue) / 2, (canvas.height - topProductImageHeight * prevTransformValue) / 2, 
+                        topProductImageWidth * prevTransformValue, topProductImageHeight * prevTransformValue
+                    ];
                     drawImageObj.bottomBlended01 = [backgroundImage, 0, backgroundImage.height * (1 - blendHeight), backgroundImage.width, backgroundImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
-                    drawImageObj.bottomBlended02 = [bottomProductImage, 0, bottomProductImage.height * (1 - blendHeight), bottomProductImage.width, bottomProductImage.height * blendHeight, 0 - transformValue, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+
+                    const respImgRatios = (canvas.height * blendHeight - (canvas.height - bottomProductImageHeight) / 2) / bottomProductImageHeight;
+                    
+                    drawImageObj.bottomBlended02 = [
+                        bottomProductImage, 
+                        0, bottomProductImage.height * (1 - respImgRatios), 
+                        bottomProductImage.width, bottomProductImage.height * respImgRatios, 
+                        (canvas.width - bottomProductImageWidth) / 2 - transformValue, canvas.height * (1 - blendHeight), 
+                        bottomProductImageWidth, bottomProductImageHeight * respImgRatios
+                    ];
                 } else if (transformType == "thirdType") {
-                    drawImageObj.topBlended = [topProductImage, 0, 0, topProductImage.width, topProductImage.height, -prevTransformValue, 0, canvas.width, canvas.height];
+                    drawImageObj.topBlended = [
+                        topProductImage, 
+                        0, 0, 
+                        topProductImage.width, topProductImage.height, 
+                        (canvas.width - topProductImageWidth) / 2 - prevTransformValue, (canvas.height - topProductImageHeight) / 2, 
+                        topProductImageWidth, topProductImageHeight
+                    ];
                     drawImageObj.bottomBlended01 = [backgroundImage, 0, backgroundImage.height * (1 - blendHeight), backgroundImage.width, backgroundImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
-                    drawImageObj.bottomBlended02 = [bottomProductImage, 0, bottomProductImage.height * (1 - blendHeight), bottomProductImage.width, bottomProductImage.height * blendHeight, 0, canvas.height * (1 - blendHeight), canvas.width, canvas.height * blendHeight];
+                    
+                    const respImgRatios = (canvas.height * blendHeight - (canvas.height - bottomProductImageHeight) / 2) / bottomProductImageHeight;
+
+                    drawImageObj.bottomBlended02 = [
+                        bottomProductImage, 
+                        0, bottomProductImage.height * (1 - respImgRatios), 
+                        bottomProductImage.width, bottomProductImage.height * respImgRatios, 
+                        (canvas.width - bottomProductImageWidth) / 2, canvas.height * (1 - blendHeight), 
+                        bottomProductImageWidth, bottomProductImageHeight * respImgRatios
+                    ];
                 }
 
 
